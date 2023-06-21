@@ -4,6 +4,7 @@ import { User } from "../models";
 import * as bcrypt from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
 import Service from "./Service";
+import { Response } from "express";
 class AuthService extends Service {
     register = async (data: UserModel) => {
         try {
@@ -19,7 +20,7 @@ class AuthService extends Service {
         }
     }
 
-    login = async (data: LoginModel) => {
+    login = async (data: LoginModel, res: Response) => {
         const user = await User.findOne({ email: data.email });
         if (user) {
             const checkPassword = await bcrypt.compare(data.password, user.password);
@@ -31,7 +32,7 @@ class AuthService extends Service {
                     email: user.email
                 }
                 const token = jwt.sign(userData, process.env.ACCESS_TOKEN_SECRET ? process.env.ACCESS_TOKEN_SECRET : 'drc');
-
+                res.cookie('authToken', token);
                 return this.response(
                     {
                         code: 200,

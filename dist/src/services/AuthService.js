@@ -55,7 +55,7 @@ class AuthService extends Service_1.default {
                 return this.response({ code: 500, message: error.message, data: null });
             }
         });
-        this.login = (data) => __awaiter(this, void 0, void 0, function* () {
+        this.login = (data, res) => __awaiter(this, void 0, void 0, function* () {
             const user = yield models_1.User.findOne({ email: data.email });
             if (user) {
                 const checkPassword = yield bcrypt.compare(data.password, user.password);
@@ -67,6 +67,7 @@ class AuthService extends Service_1.default {
                         email: user.email
                     };
                     const token = jwt.sign(userData, process.env.ACCESS_TOKEN_SECRET ? process.env.ACCESS_TOKEN_SECRET : 'drc');
+                    res.cookie('authToken', token);
                     return this.response({
                         code: 200,
                         message: 'Login successfull!.',

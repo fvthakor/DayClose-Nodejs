@@ -14,21 +14,22 @@ console.log('envUrl', envUrl);
 dotenv_1.default.config({
     path: envUrl
 });
-// var whitelist = ['http://localhost:3000']
-// var corsOptions = {
-//   origin: function (origin: OrientationLockType, callback: CallableFunction) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true)
-//     } else {
-//       callback(new Error('Not allowed by CORS'))
-//     }
-//   }
-// }
 const routes_1 = require("./src/routes");
 const database_1 = __importDefault(require("./config/database"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
+//app.use(cors())
+app.use((0, cors_1.default)({ credentials: true, origin: 'http://localhost:4200' }));
+app.use((0, cookie_parser_1.default)());
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// })
+app.get('/api', (req, res) => {
+    return res.send('Server Working');
+});
 const port = process.env.PORT;
 // parse application/x-www-form-urlencoded
 app.use(body_parser_1.default.urlencoded({ extended: false }));

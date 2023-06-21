@@ -8,7 +8,7 @@ class AuthController {
     }
 
     login = async (req: Request, res: Response) => {
-        const response = await AuthService.login(req.body);
+        const response = await AuthService.login(req.body, res);
         return res.status(response.code).json(response);
     }
 

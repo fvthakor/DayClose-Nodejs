@@ -11,22 +11,23 @@ dotenv.config({
   path: envUrl
 });
 
-// var whitelist = ['http://localhost:3000']
-// var corsOptions = {
-//   origin: function (origin: OrientationLockType, callback: CallableFunction) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true)
-//     } else {
-//       callback(new Error('Not allowed by CORS'))
-//     }
-//   }
-// }
 import { restRouter } from './src/routes';
 import Mongoose from './config/database';
 import bodyParser from 'body-parser';
-
+import cookieParser from 'cookie-parser';
 const app: Express = express();
-app.use(cors())
+//app.use(cors())
+app.use(cors({ credentials: true, origin: 'http://localhost:4200' }));
+
+app.use(cookieParser());
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// })
+app.get('/api', (req: Request, res: Response) => {
+  return res.send('Server Working');
+});
 
 const port = process.env.PORT;
 // parse application/x-www-form-urlencoded

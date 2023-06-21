@@ -1,5 +1,8 @@
 import User from "./user.model";
-
-export{
-    User
+import Store from "./store.model";
+import DocumentType from "./documentType";
+export {
+    User,
+    Store,
+    DocumentType
 }
