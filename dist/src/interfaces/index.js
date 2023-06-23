@@ -21,3 +21,4 @@ __exportStar(require("./RequestCustom.interface"), exports);
 __exportStar(require("./Login.interface"), exports);
 __exportStar(require("./Store.interface"), exports);
 __exportStar(require("./DocumentType.interface"), exports);
+__exportStar(require("./Skill.interface"), exports);
