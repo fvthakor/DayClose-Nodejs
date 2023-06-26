@@ -4,6 +4,8 @@ import userRoute from "./user.route";
 import storeRoute from "./store.route";
 import documentTypeRoute from "./documentType.route";
 import skillRoute from "./skill.route";
+import cityRoute from "./city.route";
+import pincodeRoute from "./pincode.route";
 
 const restRouter = express.Router();
 
@@ -12,5 +14,7 @@ restRouter.use('/user', userRoute)
 restRouter.use('/store', storeRoute)
 restRouter.use('/document-type', documentTypeRoute)
 restRouter.use('/skill', skillRoute);
+restRouter.use('/city', cityRoute);
+restRouter.use('/pincode', pincodeRoute);
 
 export { restRouter };

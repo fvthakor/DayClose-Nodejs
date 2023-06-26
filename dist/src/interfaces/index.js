@@ -22,3 +22,5 @@ __exportStar(require("./Login.interface"), exports);
 __exportStar(require("./Store.interface"), exports);
 __exportStar(require("./DocumentType.interface"), exports);
 __exportStar(require("./Skill.interface"), exports);
+__exportStar(require("./City.interface"), exports);
+__exportStar(require("./Pincode.interface"), exports);
