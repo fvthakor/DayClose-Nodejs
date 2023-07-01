@@ -11,6 +11,10 @@ const categorySchema = new Schema<CategoryModel>({
     store: {
         type: Schema.Types.ObjectId,
         ref: 'Store',
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
     }
 });
 

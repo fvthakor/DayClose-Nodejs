@@ -65,7 +65,7 @@ class CategoryService extends Service_1.default {
                         { "name": { $regex: new RegExp(query, "ig") } },
                     ];
                 }
-                const catigories = yield models_1.Category.find(where).skip(skip).limit(limit2);
+                const catigories = yield models_1.Category.find(where).skip(skip).limit(limit2).populate('mainCategory');
                 const total = yield models_1.Category.countDocuments(where);
                 return this.response({ code: 200, message: 'All Cateory', data: catigories, total });
             }
@@ -92,6 +92,18 @@ class CategoryService extends Service_1.default {
             try {
                 const categories = yield models_1.Category.find().populate('pincodes');
                 return this.response({ code: 200, message: 'All Categories', data: categories });
+            }
+            catch (error) {
+                return this.response({ code: 500, message: error.message, data: [] });
+            }
+        });
+    }
+    getMainCategory() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                var where = { mainCategory: null };
+                const categories = yield models_1.Category.find(where);
+                return this.response({ code: 200, message: 'Parent Categories', data: categories });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: [] });

@@ -48,7 +48,7 @@ class CategoryService extends Service {
                     { "name": { $regex: new RegExp(query, "ig") } },
                 ]
             }
-            const catigories = await Category.find(where).skip(skip).limit(limit2);
+            const catigories = await Category.find(where).skip(skip).limit(limit2).populate('mainCategory');
             const total = await Category.countDocuments(where);
             return this.response({ code: 200, message: 'All Cateory', data: catigories, total })
         } catch (error: any) {
@@ -73,6 +73,17 @@ class CategoryService extends Service {
             return this.response({ code: 200, message: 'All Categories', data: categories })
         } catch (error: any) {
             return this.response({ code: 500, message: error.message, data: [] })
+        }
+    }
+    async getMainCategory (){
+        try{
+            var where ={mainCategory:null};
+            const categories = await Category.find(where);
+            return this.response({code:200, message: 'Parent Categories',data:categories})
+            
+        }catch(error:any){
+
+            return this.response({code:500,message:error.message,data:[]})
         }
     }
 }

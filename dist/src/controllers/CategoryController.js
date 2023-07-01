@@ -13,7 +13,7 @@ const services_1 = require("../services");
 class CategoryController {
     constructor() {
         this.create = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.CategoryService.create(Object.assign(Object.assign({}, req.body), { store: req.storeId }));
+            const response = yield services_1.CategoryService.create(Object.assign(Object.assign({}, req.body), { store: req.storeId, user: req.userId }));
             return res.status(response.code).json(response);
         });
         this.getOne = (req, res) => __awaiter(this, void 0, void 0, function* () {
@@ -34,6 +34,10 @@ class CategoryController {
         });
         this.getAllData = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const response = yield services_1.CategoryService.getAllData();
+            return res.status(response.code).json(response);
+        });
+        this.getMainCategory = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const response = yield services_1.CategoryService.getMainCategory();
             return res.status(response.code).json(response);
         });
     }
