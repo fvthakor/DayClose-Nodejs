@@ -4,10 +4,11 @@ import { checkAuth } from "../middleware";
 
 const documentTypeRoute = express.Router();
 
-documentTypeRoute.post('/', [checkAuth], DocumentTypeController.create);
-documentTypeRoute.get('/', [checkAuth], DocumentTypeController.getAll);
-documentTypeRoute.get('/:id', [checkAuth], DocumentTypeController.getOne);
-documentTypeRoute.put('/:id', [checkAuth], DocumentTypeController.update);
-documentTypeRoute.delete('/:id', [checkAuth], DocumentTypeController.delete);
+documentTypeRoute.post('/', [checkAuth(['admin'])], DocumentTypeController.create);
+documentTypeRoute.get('/', [checkAuth(['admin'])], DocumentTypeController.getAll);
+documentTypeRoute.get('/all', DocumentTypeController.getAllData);
+documentTypeRoute.get('/:id', [checkAuth(['admin'])], DocumentTypeController.getOne);
+documentTypeRoute.put('/:id', [checkAuth(['admin'])], DocumentTypeController.update);
+documentTypeRoute.delete('/:id', [checkAuth(['admin'])], DocumentTypeController.delete);
 
 export default documentTypeRoute;

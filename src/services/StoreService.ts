@@ -70,6 +70,15 @@ class StoreService extends Service {
             return this.response({ code: 500, message: 'Request failed due to an internal error.', data: null })
         }
     }
+
+    async getAllData() {
+        try {
+            const stores = await Store.find();
+            return this.response({ code: 200, message: 'All Stores', data: stores })
+        } catch (error: any) {
+            return this.response({ code: 500, message: error.message, data: [] })
+        }
+    }
 }
 
 export default new StoreService();

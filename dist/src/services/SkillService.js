@@ -87,5 +87,16 @@ class SkillService extends Service_1.default {
             }
         });
     }
+    getAllData() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const skills = yield models_1.Skill.find();
+                return this.response({ code: 200, message: 'All skills', data: skills });
+            }
+            catch (error) {
+                return this.response({ code: 500, message: error.message, data: [] });
+            }
+        });
+    }
 }
 exports.default = new SkillService();

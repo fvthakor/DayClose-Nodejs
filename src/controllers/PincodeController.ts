@@ -21,6 +21,12 @@ class PincodeController {
         return res.status(response.code).json(response);
     }
 
+    getAllData = async (req: Request, res: Response) => {
+        const response = await PincodeService.getAllData();
+        return res.status(response.code).json(response);
+    }
+
+
     update = async (req: Request, res: Response) => {
         const response = await PincodeService.update(req.params.id, req.body);
         return res.status(response.code).json(response);

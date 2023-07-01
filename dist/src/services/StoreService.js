@@ -91,5 +91,16 @@ class StoreService extends Service_1.default {
             }
         });
     }
+    getAllData() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const stores = yield models_1.Store.find();
+                return this.response({ code: 200, message: 'All Stores', data: stores });
+            }
+            catch (error) {
+                return this.response({ code: 500, message: error.message, data: [] });
+            }
+        });
+    }
 }
 exports.default = new StoreService();

@@ -8,7 +8,14 @@ import { Response } from "express";
 class AuthService extends Service {
     register = async (data: UserModel) => {
         try {
-            const user = await User.create(data)
+            const password = data.password ? data.password : '123456';
+            const hash = await bcrypt.hash(password, process.env.PASSWORD_SALT ? +process.env.PASSWORD_SALT : 10);
+            const user = await User.create({
+                ...data,
+                role: data.role ? data.role : 'employee',
+                email: data.email ? data.email : `${Date.now() + '-' + Math.round(Math.random() * 1E9)}@gmail.com`,
+                password: hash
+            });
             return this.response(
                 {
                     code: 200,
@@ -29,7 +36,8 @@ class AuthService extends Service {
                     _id: user._id,
                     name: user.name,
                     role: user.role,
-                    email: user.email
+                    email: user.email,
+                    store: user.store
                 }
                 const token = jwt.sign(userData, process.env.ACCESS_TOKEN_SECRET ? process.env.ACCESS_TOKEN_SECRET : 'drc');
                 res.cookie('authToken', token);
@@ -55,7 +63,8 @@ class AuthService extends Service {
                 name: user.name,
                 role: user.role,
                 email: user.email,
-                pic: './assets/media/avatars/300-1.jpg'
+                store: user.store,
+                pic: user.employeePhoto ? user.employeePhoto : './assets/media/avatars/300-1.jpg'
             }
             return userData;
         } else {

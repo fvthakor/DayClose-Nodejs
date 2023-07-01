@@ -52,6 +52,17 @@ class PincodeService extends Service_1.default {
             }
         });
     }
+    getAllData() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const cities = yield models_1.Pincode.find();
+                return this.response({ code: 200, message: 'All Pincode', data: cities });
+            }
+            catch (error) {
+                return this.response({ code: 500, message: error.message, data: [] });
+            }
+        });
+    }
     getAll(req) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

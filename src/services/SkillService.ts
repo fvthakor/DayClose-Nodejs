@@ -65,6 +65,15 @@ class SkillService extends Service {
             return this.response({ code: 500, message: 'Request failed due to an internal error.', data: null })
         }
     }
+
+    async getAllData() {
+        try {
+            const skills = await Skill.find();
+            return this.response({ code: 200, message: 'All skills', data: skills })
+        } catch (error: any) {
+            return this.response({ code: 500, message: error.message, data: [] })
+        }
+    }
 }
 
 export default new SkillService();

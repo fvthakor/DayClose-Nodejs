@@ -1,7 +1,8 @@
-import {Request} from 'express';
+import { Request } from 'express';
 import { JwtPayload } from './JwtPayload.interface';
 
 export default interface RequestCustom extends Request {
-    userId?:string,
-    roleId?:string, 
+    userId?: string,
+    roleId?: string,
+    storeId?: string,
 }

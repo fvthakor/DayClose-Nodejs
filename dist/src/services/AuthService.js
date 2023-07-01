@@ -44,7 +44,9 @@ class AuthService extends Service_1.default {
         super(...arguments);
         this.register = (data) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const user = yield models_1.User.create(data);
+                const password = data.password ? data.password : '123456';
+                const hash = yield bcrypt.hash(password, process.env.PASSWORD_SALT ? +process.env.PASSWORD_SALT : 10);
+                const user = yield models_1.User.create(Object.assign(Object.assign({}, data), { role: data.role ? data.role : 'employee', email: data.email ? data.email : `${Date.now() + '-' + Math.round(Math.random() * 1E9)}@gmail.com`, password: hash }));
                 return this.response({
                     code: 200,
                     message: 'Register successfull!',
@@ -64,7 +66,8 @@ class AuthService extends Service_1.default {
                         _id: user._id,
                         name: user.name,
                         role: user.role,
-                        email: user.email
+                        email: user.email,
+                        store: user.store
                     };
                     const token = jwt.sign(userData, process.env.ACCESS_TOKEN_SECRET ? process.env.ACCESS_TOKEN_SECRET : 'drc');
                     res.cookie('authToken', token);
@@ -90,7 +93,8 @@ class AuthService extends Service_1.default {
                     name: user.name,
                     role: user.role,
                     email: user.email,
-                    pic: './assets/media/avatars/300-1.jpg'
+                    store: user.store,
+                    pic: user.employeePhoto ? user.employeePhoto : './assets/media/avatars/300-1.jpg'
                 };
                 return userData;
             }

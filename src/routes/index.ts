@@ -6,6 +6,7 @@ import documentTypeRoute from "./documentType.route";
 import skillRoute from "./skill.route";
 import cityRoute from "./city.route";
 import pincodeRoute from "./pincode.route";
+import categoryRoute from "./category.route";
 
 const restRouter = express.Router();
 
@@ -16,5 +17,6 @@ restRouter.use('/document-type', documentTypeRoute)
 restRouter.use('/skill', skillRoute);
 restRouter.use('/city', cityRoute);
 restRouter.use('/pincode', pincodeRoute);
+restRouter.use('/category', categoryRoute);
 
 export { restRouter };

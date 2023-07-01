@@ -4,12 +4,13 @@ import DocumentType from "./documentType";
 import Skill from "./skill.model";
 import City from "./city.model";
 import Pincode from "./pincode.model";
-
+import Category from "./category.model";
 export {
     User,
     Store,
     DocumentType,
     Skill,
     City,
-    Pincode
+    Pincode,
+    Category
 }

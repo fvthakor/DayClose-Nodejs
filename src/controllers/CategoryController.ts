@@ -1,40 +1,40 @@
 import { Request, Response } from "express";
-import { SkillService } from "../services";
+import { CategoryService } from "../services";
+import RequestCustom from "../interfaces/RequestCustom.interface";
 
-class SkillController {
+class CategoryController {
     constructor() {
 
     }
 
-    create = async (req: Request, res: Response) => {
-        const response = await SkillService.create(req.body);
+    create = async (req: RequestCustom, res: Response) => {
+        const response = await CategoryService.create({ ...req.body, store: req.storeId });
         return res.status(response.code).json(response);
     }
 
     getOne = async (req: Request, res: Response) => {
-        const response = await SkillService.getOne(req.params.id);
+        const response = await CategoryService.getOne(req.params.id);
         return res.status(response.code).json(response);
     }
 
     getAll = async (req: Request, res: Response) => {
-        const response = await SkillService.getAll(req);
+        const response = await CategoryService.getAll(req);
         return res.status(response.code).json(response);
     }
 
     update = async (req: Request, res: Response) => {
-        const response = await SkillService.update(req.params.id, req.body);
+        const response = await CategoryService.update(req.params.id, req.body);
         return res.status(response.code).json(response);
     }
 
     delete = async (req: Request, res: Response) => {
-        const response = await SkillService.delete(req.params.id);
+        const response = await CategoryService.delete(req.params.id);
         return res.status(response.code).json(response);
     }
-
     getAllData = async (req: Request, res: Response) => {
-        const response = await SkillService.getAllData();
+        const response = await CategoryService.getAllData();
         return res.status(response.code).json(response);
     }
 }
 
-export default new SkillController();
+export default new CategoryController();

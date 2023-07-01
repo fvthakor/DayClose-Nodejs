@@ -30,6 +30,11 @@ class StoreController {
         const response = await StoreService.delete(req.params.id);
         return res.status(response.code).json(response);
     }
+
+    getAllData = async (req: Request, res: Response) => {
+        const response = await StoreService.getAllData();
+        return res.status(response.code).json(response);
+    }
 }
 
 export default new StoreController();

@@ -32,6 +32,10 @@ class StoreController {
             const response = yield services_1.StoreService.delete(req.params.id);
             return res.status(response.code).json(response);
         });
+        this.getAllData = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const response = yield services_1.StoreService.getAllData();
+            return res.status(response.code).json(response);
+        });
     }
 }
 exports.default = new StoreController();

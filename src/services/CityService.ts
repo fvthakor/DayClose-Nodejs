@@ -1,5 +1,5 @@
-import { CityModel, SkillModel } from "../interfaces";
-import { City, Skill } from "../models";
+import { CityModel } from "../interfaces";
+import { City } from "../models";
 import Service from "./Service";
 import { Request } from "express";
 
@@ -24,7 +24,7 @@ class CityService extends Service {
         }
     }
 
-    async update(id: string, data: SkillModel) {
+    async update(id: string, data: CityModel) {
         try {
             const city = await City.findByIdAndUpdate(id, data, { new: true });
             return city
@@ -68,7 +68,7 @@ class CityService extends Service {
 
     async getAllData() {
         try {
-            const cities = await City.find();
+            const cities = await City.find().populate('pincodes');
             return this.response({ code: 200, message: 'All Cities', data: cities })
         } catch (error: any) {
             return this.response({ code: 500, message: error.message, data: [] })

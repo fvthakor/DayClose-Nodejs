@@ -5,6 +5,7 @@ import DocumentTypeController from "./DocumentTypeController";
 import SkillController from "./SkillController";
 import CityController from "./CityController";
 import PincodeController from "./PincodeController";
+import CategoryController from "./CategoryController";
 export {
     AuthController,
     UserController,
@@ -12,5 +13,6 @@ export {
     DocumentTypeController,
     SkillController,
     CityController,
-    PincodeController
+    PincodeController,
+    CategoryController
 }

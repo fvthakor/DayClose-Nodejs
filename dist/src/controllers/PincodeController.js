@@ -24,6 +24,10 @@ class PincodeController {
             const response = yield services_1.PincodeService.getAll(req);
             return res.status(response.code).json(response);
         });
+        this.getAllData = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const response = yield services_1.PincodeService.getAllData();
+            return res.status(response.code).json(response);
+        });
         this.update = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const response = yield services_1.PincodeService.update(req.params.id, req.body);
             return res.status(response.code).json(response);

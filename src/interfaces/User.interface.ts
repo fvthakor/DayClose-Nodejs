@@ -1,7 +1,26 @@
+import { ObjectId } from "mongoose";
 
 export interface UserModel {
+    emplyeeId: string,
+    firstName: string,
+    middleName: string,
+    lastName: string,
+    userName: string,
+    phoneNumber: string,
     name: string,
     email: string,
+    address: string,
+    city: ObjectId,
+    pincode: ObjectId,
+    documentType: ObjectId,
+    documentNumber: string,
+    documentFront: string,
+    documentBack: string,
+    skill: ObjectId,
+    store: ObjectId,
+    remark1: string,
+    remark2: string,
+    employeePhoto: string,
     password: string,
     role: 'admin | employee | manager',
 };

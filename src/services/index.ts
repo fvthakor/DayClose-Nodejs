@@ -5,7 +5,7 @@ import DocumentTypeService from "./DocumentTypeService";
 import SkillService from "./SkillService";
 import CityService from "./CityService";
 import PincodeService from "./PincodeService";
-
+import CategoryService from "./CategoryService";
 export {
     AuthService,
     UserService,
@@ -13,5 +13,6 @@ export {
     DocumentTypeService,
     SkillService,
     CityService,
-    PincodeService
+    PincodeService,
+    CategoryService
 }

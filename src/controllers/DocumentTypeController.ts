@@ -30,6 +30,11 @@ class DocumentTypeController {
         const response = await DocumentTypeService.delete(req.params.id);
         return res.status(response.code).json(response);
     }
+
+    getAllData = async (req: Request, res: Response) => {
+        const response = await DocumentTypeService.getAllData();
+        return res.status(response.code).json(response);
+    }
 }
 
 export default new DocumentTypeController();

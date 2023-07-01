@@ -35,6 +35,15 @@ class PincodeService extends Service {
         }
     }
 
+    async getAllData() {
+        try {
+            const cities = await Pincode.find();
+            return this.response({ code: 200, message: 'All Pincode', data: cities })
+        } catch (error: any) {
+            return this.response({ code: 500, message: error.message, data: [] })
+        }
+    }
+
     async getAll(req: Request) {
         try {
             let { page, limit, query } = req.query;

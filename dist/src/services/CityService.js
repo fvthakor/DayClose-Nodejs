@@ -90,7 +90,7 @@ class CityService extends Service_1.default {
     getAllData() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const cities = yield models_1.City.find();
+                const cities = yield models_1.City.find().populate('pincodes');
                 return this.response({ code: 200, message: 'All Cities', data: cities });
             }
             catch (error) {

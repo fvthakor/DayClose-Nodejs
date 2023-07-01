@@ -21,7 +21,18 @@ class AuthController {
             return res.status(200).json(response);
         });
         this.register = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.AuthService.register(req.body);
+            const files = req.files;
+            let body = req.body;
+            if (files['documentFront']) {
+                body.documentFront = files['documentFront'][0].path.replace(/\\/g, "/");
+            }
+            if (files['documentBack']) {
+                body.documentBack = files['documentBack'][0].path.replace(/\\/g, "/");
+            }
+            if (files['employeePhoto']) {
+                body.employeePhoto = files['employeePhoto'][0].path.replace(/\\/g, "/");
+            }
+            const response = yield services_1.AuthService.register(body);
             return res.status(response.code).json(response);
         });
     }

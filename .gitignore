@@ -4,6 +4,7 @@
 /documents/*
 /storage/*.key
 /vendor
+/api/uploads/*
 
 development.env
 .env

@@ -14,12 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const models_1 = require("../models");
 const Service_1 = __importDefault(require("./Service"));
-class DocumentTypeService extends Service_1.default {
+class CategoryService extends Service_1.default {
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const document = yield models_1.DocumentType.create(data);
-                return this.response({ code: 201, message: 'Document Type added successfully!', data: document });
+                const category = yield models_1.Category.create(Object.assign(Object.assign({}, data), { mainCategory: data.mainCategory ? data.mainCategory : null }));
+                return this.response({ code: 201, message: 'Category added successfully!', data: category });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: null });
@@ -29,10 +29,10 @@ class DocumentTypeService extends Service_1.default {
     getOne(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const document = yield models_1.DocumentType.findById(id);
-                return document
-                    ? this.response({ code: 200, message: 'Document Type by id!', data: document })
-                    : this.response({ code: 400, message: 'Document Type not found!', data: null });
+                const category = yield models_1.Category.findById(id);
+                return category
+                    ? this.response({ code: 200, message: 'Category by id!', data: category })
+                    : this.response({ code: 400, message: 'Category not found!', data: null });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: null });
@@ -42,10 +42,10 @@ class DocumentTypeService extends Service_1.default {
     update(id, data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const document = yield models_1.DocumentType.findByIdAndUpdate(id, data, { new: true });
-                return document
-                    ? this.response({ code: 200, message: 'Document Type updated successfully!', data: document })
-                    : this.response({ code: 400, message: 'Document Type not found!', data: null });
+                const category = yield models_1.Category.findByIdAndUpdate(id, data, { new: true });
+                return category
+                    ? this.response({ code: 200, message: 'Category updated successfully!', data: category })
+                    : this.response({ code: 400, message: 'Category not found!', data: null });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: null });
@@ -65,9 +65,9 @@ class DocumentTypeService extends Service_1.default {
                         { "name": { $regex: new RegExp(query, "ig") } },
                     ];
                 }
-                const documents = yield models_1.DocumentType.find(where).skip(skip).limit(limit2);
-                const total = yield models_1.DocumentType.countDocuments(where);
-                return this.response({ code: 200, message: 'All Document Type', data: documents, total });
+                const catigories = yield models_1.Category.find(where).skip(skip).limit(limit2);
+                const total = yield models_1.Category.countDocuments(where);
+                return this.response({ code: 200, message: 'All Cateory', data: catigories, total });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: [] });
@@ -77,10 +77,10 @@ class DocumentTypeService extends Service_1.default {
     delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const document = yield models_1.DocumentType.findByIdAndDelete(id);
-                return document
-                    ? this.response({ code: 200, message: 'Document Type deleted successfully!', data: document })
-                    : this.response({ code: 400, message: 'Document Type not found!', data: null });
+                const category = yield models_1.Category.findByIdAndDelete(id);
+                return category
+                    ? this.response({ code: 200, message: 'Category deleted successfully!', data: category })
+                    : this.response({ code: 400, message: 'Category not found!', data: null });
             }
             catch (error) {
                 return this.response({ code: 500, message: 'Request failed due to an internal error.', data: null });
@@ -90,8 +90,8 @@ class DocumentTypeService extends Service_1.default {
     getAllData() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const DocumentTypes = yield models_1.DocumentType.find();
-                return this.response({ code: 200, message: 'All Document Types', data: DocumentTypes });
+                const categories = yield models_1.Category.find().populate('pincodes');
+                return this.response({ code: 200, message: 'All Categories', data: categories });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: [] });
@@ -99,4 +99,4 @@ class DocumentTypeService extends Service_1.default {
         });
     }
 }
-exports.default = new DocumentTypeService();
+exports.default = new CategoryService();

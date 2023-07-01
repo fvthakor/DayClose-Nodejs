@@ -44,6 +44,7 @@ app.use("/api/", routes_1.restRouter);
 app.get('/', (req, res) => {
     res.send('Express + TypeScript Server');
 });
+app.use('/api/uploads', express_1.default.static('api/uploads'));
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });

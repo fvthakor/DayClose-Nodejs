@@ -4,11 +4,11 @@ import { checkAuth } from "../middleware";
 
 const cityRoute = express.Router();
 
-cityRoute.post('/', [checkAuth], CityController.create);
-cityRoute.get('/', [checkAuth], CityController.getAll);
-cityRoute.get('/all', [checkAuth], CityController.getAllData);
-cityRoute.get('/:id', [checkAuth], CityController.getOne);
-cityRoute.put('/:id', [checkAuth], CityController.update);
-cityRoute.delete('/:id', [checkAuth], CityController.delete);
+cityRoute.post('/', [checkAuth(['admin'])], CityController.create);
+cityRoute.get('/', [checkAuth(['admin'])], CityController.getAll);
+cityRoute.get('/all', CityController.getAllData);
+cityRoute.get('/:id', [checkAuth(['admin'])], CityController.getOne);
+cityRoute.put('/:id', [checkAuth(['admin'])], CityController.update);
+cityRoute.delete('/:id', [checkAuth(['admin'])], CityController.delete);
 
 export default cityRoute;

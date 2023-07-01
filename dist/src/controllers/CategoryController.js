@@ -10,32 +10,32 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const services_1 = require("../services");
-class SkillController {
+class CategoryController {
     constructor() {
         this.create = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.SkillService.create(req.body);
+            const response = yield services_1.CategoryService.create(Object.assign(Object.assign({}, req.body), { store: req.storeId }));
             return res.status(response.code).json(response);
         });
         this.getOne = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.SkillService.getOne(req.params.id);
+            const response = yield services_1.CategoryService.getOne(req.params.id);
             return res.status(response.code).json(response);
         });
         this.getAll = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.SkillService.getAll(req);
+            const response = yield services_1.CategoryService.getAll(req);
             return res.status(response.code).json(response);
         });
         this.update = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.SkillService.update(req.params.id, req.body);
+            const response = yield services_1.CategoryService.update(req.params.id, req.body);
             return res.status(response.code).json(response);
         });
         this.delete = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.SkillService.delete(req.params.id);
+            const response = yield services_1.CategoryService.delete(req.params.id);
             return res.status(response.code).json(response);
         });
         this.getAllData = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.SkillService.getAllData();
+            const response = yield services_1.CategoryService.getAllData();
             return res.status(response.code).json(response);
         });
     }
 }
-exports.default = new SkillController();
+exports.default = new CategoryController();
