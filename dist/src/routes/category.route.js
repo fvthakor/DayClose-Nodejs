@@ -11,6 +11,7 @@ categoryRoute.post('/', [(0, middleware_1.checkAuth)(['manager'])], controllers_
 categoryRoute.get('/', [(0, middleware_1.checkAuth)(['manager'])], controllers_1.CategoryController.getAll);
 categoryRoute.get('/all', controllers_1.CategoryController.getAllData);
 categoryRoute.get('/parent', [(0, middleware_1.checkAuth)(['manager'])], controllers_1.CategoryController.getMainCategory);
+categoryRoute.get('/subcategory/:id', [(0, middleware_1.checkAuth)(['manager'])], controllers_1.CategoryController.getSubCategory);
 categoryRoute.get('/:id', [(0, middleware_1.checkAuth)(['manager'])], controllers_1.CategoryController.getOne);
 categoryRoute.put('/:id', [(0, middleware_1.checkAuth)(['manager'])], controllers_1.CategoryController.update);
 categoryRoute.delete('/:id', [(0, middleware_1.checkAuth)(['manager'])], controllers_1.CategoryController.delete);

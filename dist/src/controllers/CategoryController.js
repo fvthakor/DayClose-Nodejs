@@ -40,6 +40,10 @@ class CategoryController {
             const response = yield services_1.CategoryService.getMainCategory();
             return res.status(response.code).json(response);
         });
+        this.getSubCategory = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const response = yield services_1.CategoryService.getSubCategory(req.params.id);
+            return res.status(response.code).json(response);
+        });
     }
 }
 exports.default = new CategoryController();
