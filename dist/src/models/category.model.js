@@ -11,6 +11,10 @@ const categorySchema = new mongoose_1.Schema({
     store: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Store',
+    },
+    user: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'User',
     }
 });
 const Category = (0, mongoose_1.model)('Category', categorySchema);
