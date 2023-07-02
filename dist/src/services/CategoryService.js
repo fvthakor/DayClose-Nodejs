@@ -62,7 +62,7 @@ class CategoryService extends Service_1.default {
                 let where = {};
                 if (typeof query === 'string' && query.trim() !== '') {
                     where['$or'] = [
-                        { "name": { $regex: new RegExp(query, "ig") } },
+                        { "category": { $regex: new RegExp(query, "ig") } },
                     ];
                 }
                 const catigories = yield models_1.Category.find(where).skip(skip).limit(limit2).populate('mainCategory');

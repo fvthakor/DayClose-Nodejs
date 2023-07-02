@@ -6,6 +6,7 @@ import SkillService from "./SkillService";
 import CityService from "./CityService";
 import PincodeService from "./PincodeService";
 import CategoryService from "./CategoryService";
+import TaskStatusService from "./TaskStatusService";
 export {
     AuthService,
     UserService,
@@ -14,5 +15,6 @@ export {
     SkillService,
     CityService,
     PincodeService,
-    CategoryService
+    CategoryService,
+    TaskStatusService
 }

@@ -45,7 +45,7 @@ class CategoryService extends Service {
             let where: any = {}
             if (typeof query === 'string' && query.trim() !== '') {
                 where['$or'] = [
-                    { "name": { $regex: new RegExp(query, "ig") } },
+                    { "category": { $regex: new RegExp(query, "ig") } },
                 ]
             }
             const catigories = await Category.find(where).skip(skip).limit(limit2).populate('mainCategory');
