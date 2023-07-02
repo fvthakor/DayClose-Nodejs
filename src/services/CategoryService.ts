@@ -75,15 +75,23 @@ class CategoryService extends Service {
             return this.response({ code: 500, message: error.message, data: [] })
         }
     }
-    async getMainCategory (){
-        try{
-            var where ={mainCategory:null};
+    async getMainCategory() {
+        try {
+            var where = { mainCategory: null };
             const categories = await Category.find(where);
-            return this.response({code:200, message: 'Parent Categories',data:categories})
-            
-        }catch(error:any){
+            return this.response({ code: 200, message: 'Parent Categories', data: categories })
+        } catch (error: any) {
 
-            return this.response({code:500,message:error.message,data:[]})
+            return this.response({ code: 500, message: error.message, data: [] })
+        }
+    }
+    async getSubCategory(id: string) {
+        try {
+            const categories = await Category.find({ mainCategory: id }).populate('mainCategory')
+            return this.response({ code: 200, message: 'Subcategory', data: categories })
+        } catch (error: any) {
+
+            return this.response({ code: 500, message: error.message, data: [] })
         }
     }
 }

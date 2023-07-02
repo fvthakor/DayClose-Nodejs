@@ -110,5 +110,16 @@ class CategoryService extends Service_1.default {
             }
         });
     }
+    getSubCategory(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const categories = yield models_1.Category.find({ mainCategory: id }).populate('mainCategory');
+                return this.response({ code: 200, message: 'Subcategory', data: categories });
+            }
+            catch (error) {
+                return this.response({ code: 500, message: error.message, data: [] });
+            }
+        });
+    }
 }
 exports.default = new CategoryService();
