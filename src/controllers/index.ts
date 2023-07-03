@@ -6,6 +6,7 @@ import SkillController from "./SkillController";
 import CityController from "./CityController";
 import PincodeController from "./PincodeController";
 import CategoryController from "./CategoryController";
+import TaskStatusController from "./TaskStatusController";
 export {
     AuthController,
     UserController,
@@ -14,5 +15,7 @@ export {
     SkillController,
     CityController,
     PincodeController,
-    CategoryController
+    CategoryController,
+    TaskStatusController
+
 }

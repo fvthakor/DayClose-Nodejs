@@ -7,6 +7,7 @@ import skillRoute from "./skill.route";
 import cityRoute from "./city.route";
 import pincodeRoute from "./pincode.route";
 import categoryRoute from "./category.route";
+import taskStatusRoute from "./taskStatus.route";
 
 const restRouter = express.Router();
 
@@ -18,5 +19,5 @@ restRouter.use('/skill', skillRoute);
 restRouter.use('/city', cityRoute);
 restRouter.use('/pincode', pincodeRoute);
 restRouter.use('/category', categoryRoute);
-
+restRouter.use('/task-status', taskStatusRoute);
 export { restRouter };
