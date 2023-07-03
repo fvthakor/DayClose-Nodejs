@@ -7,6 +7,7 @@ import CityController from "./CityController";
 import PincodeController from "./PincodeController";
 import CategoryController from "./CategoryController";
 import TaskStatusController from "./TaskStatusController";
+import TaskController from "./TaskController";
 export {
     AuthController,
     UserController,
@@ -16,6 +17,7 @@ export {
     CityController,
     PincodeController,
     CategoryController,
-    TaskStatusController
+    TaskStatusController,
+    TaskController
 
 }

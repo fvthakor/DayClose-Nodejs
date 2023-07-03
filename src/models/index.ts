@@ -5,6 +5,7 @@ import Skill from "./skill.model";
 import City from "./city.model";
 import Pincode from "./pincode.model";
 import Category from "./category.model";
+import Task from "./task.model";
 export {
     User,
     Store,
@@ -12,5 +13,6 @@ export {
     Skill,
     City,
     Pincode,
-    Category
+    Category,
+    Task
 }

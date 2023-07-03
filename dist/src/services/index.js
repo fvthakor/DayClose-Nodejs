@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaskStatusService = exports.CategoryService = exports.PincodeService = exports.CityService = exports.SkillService = exports.DocumentTypeService = exports.StoreService = exports.UserService = exports.AuthService = void 0;
+exports.TaskService = exports.TaskStatusService = exports.CategoryService = exports.PincodeService = exports.CityService = exports.SkillService = exports.DocumentTypeService = exports.StoreService = exports.UserService = exports.AuthService = void 0;
 const AuthService_1 = __importDefault(require("./AuthService"));
 exports.AuthService = AuthService_1.default;
 const UserService_1 = __importDefault(require("./UserService"));
@@ -22,3 +22,5 @@ const CategoryService_1 = __importDefault(require("./CategoryService"));
 exports.CategoryService = CategoryService_1.default;
 const TaskStatusService_1 = __importDefault(require("./TaskStatusService"));
 exports.TaskStatusService = TaskStatusService_1.default;
+const TaskService_1 = __importDefault(require("./TaskService"));
+exports.TaskService = TaskService_1.default;

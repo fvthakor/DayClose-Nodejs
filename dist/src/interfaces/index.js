@@ -26,3 +26,4 @@ __exportStar(require("./City.interface"), exports);
 __exportStar(require("./Pincode.interface"), exports);
 __exportStar(require("./Category.interface"), exports);
 __exportStar(require("./TaskStatus.interface"), exports);
+__exportStar(require("./Task.interface"), exports);
