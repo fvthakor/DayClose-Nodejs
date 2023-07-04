@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaskStatusController = exports.CategoryController = exports.PincodeController = exports.CityController = exports.SkillController = exports.DocumentTypeController = exports.StoreController = exports.UserController = exports.AuthController = void 0;
+exports.TaskController = exports.TaskStatusController = exports.CategoryController = exports.PincodeController = exports.CityController = exports.SkillController = exports.DocumentTypeController = exports.StoreController = exports.UserController = exports.AuthController = void 0;
 const auth_controller_1 = __importDefault(require("./auth.controller"));
 exports.AuthController = auth_controller_1.default;
 const User_controller_1 = __importDefault(require("./User.controller"));
@@ -22,3 +22,5 @@ const CategoryController_1 = __importDefault(require("./CategoryController"));
 exports.CategoryController = CategoryController_1.default;
 const TaskStatusController_1 = __importDefault(require("./TaskStatusController"));
 exports.TaskStatusController = TaskStatusController_1.default;
+const TaskController_1 = __importDefault(require("./TaskController"));
+exports.TaskController = TaskController_1.default;
