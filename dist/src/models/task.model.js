@@ -9,29 +9,26 @@ const taskSchema = new mongoose_1.Schema({
     store: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Store',
-    }, category: {
+    },
+    category: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Category',
-    }, subCategory: {
+    },
+    subCategory: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Category',
-    }, detail: {
+    },
+    detail: {
         type: String,
-    }, employee: {
+    },
+    employee: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'User'
-    }, taskDate: {
+    },
+    taskDate: {
         type: Date
-    }, image1: {
-        type: String,
-        get: (value) => {
-            return process.env.SERVER_URL
-                ? value
-                    ? `${process.env.SERVER_URL}/${value}`
-                    : null
-                : value;
-        }
-    }, image2: {
+    },
+    image1: {
         type: String,
         get: (value) => {
             return process.env.SERVER_URL
@@ -41,7 +38,17 @@ const taskSchema = new mongoose_1.Schema({
                 : value;
         }
     },
-    status: { type: String, enum: ['pending', 'complete', 'not_now', 'assined_to_other'], required: true }
+    image2: {
+        type: String,
+        get: (value) => {
+            return process.env.SERVER_URL
+                ? value
+                    ? `${process.env.SERVER_URL}/${value}`
+                    : null
+                : value;
+        }
+    },
+    status: { type: String, enum: ['pending', 'complete', 'not_now', 'assined_to_other'], default: 'pending' }
 });
 const Task = (0, mongoose_1.model)('Task', taskSchema);
 exports.default = Task;

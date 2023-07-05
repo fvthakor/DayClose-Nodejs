@@ -1,5 +1,6 @@
 import {Request, Response } from "express";
 import { UserService } from "../services";
+import RequestCustom from "../interfaces/RequestCustom.interface";
 
 class UserController{
     constructor(){
@@ -28,6 +29,11 @@ class UserController{
     
     delete = async(req:Request, res:Response) => {
         const response = await UserService.delete(+req.params.id);
+        return res.status(response.code).json(response);
+    }
+
+    getEmployee = async (req:RequestCustom, res:Response) => {
+        const response = await UserService.getEmployee(req.storeId ? req.storeId : '');
         return res.status(response.code).json(response);
     }
 }

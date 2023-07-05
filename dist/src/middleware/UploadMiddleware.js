@@ -19,7 +19,7 @@ const uploadFile = (0, multer_1.default)({
     storage: storage,
     //limits: { fileSize: 1 * 1024 * 1024 }, // 1MB
     fileFilter: (req, file, cb) => {
-        if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+        if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg" || file.mimetype == "image/x-icon") {
             cb(null, true);
         }
         else {

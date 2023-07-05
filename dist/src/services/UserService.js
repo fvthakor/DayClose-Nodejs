@@ -39,6 +39,22 @@ const models_1 = require("../models");
 const bcrypt = __importStar(require("bcrypt"));
 const Service_1 = __importDefault(require("./Service"));
 class UserService extends Service_1.default {
+    constructor() {
+        super(...arguments);
+        this.getEmployee = (storeId) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                console.log('storeId', storeId);
+                const users = yield models_1.User.find({
+                    store: storeId,
+                    role: 'employee'
+                });
+                return this.response({ code: 200, message: 'All Store employee', data: users });
+            }
+            catch (error) {
+                return this.response({ code: 500, message: error.message, data: [] });
+            }
+        });
+    }
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

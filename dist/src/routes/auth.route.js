@@ -8,11 +8,7 @@ const controllers_1 = require("../controllers");
 const UploadMiddleware_1 = __importDefault(require("../middleware/UploadMiddleware"));
 const AuthMiddleware_1 = require("../middleware/AuthMiddleware");
 const authRoute = express_1.default.Router();
-const cpUpload = UploadMiddleware_1.default.fields([
-    { name: 'documentFront', maxCount: 1 },
-    { name: 'documentBack', maxCount: 1 },
-    { name: 'employeePhoto', maxCount: 1 }
-]);
+const cpUpload = UploadMiddleware_1.default.any();
 authRoute.post('/register', cpUpload, controllers_1.AuthController.register);
 authRoute.post('/login', controllers_1.AuthController.login);
 authRoute.get('/me', [(0, AuthMiddleware_1.checkAuth)(['admin', 'manager', 'employee'])], controllers_1.AuthController.me);

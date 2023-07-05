@@ -10,5 +10,5 @@ export interface TaskModel {
     taskDate: Date,
     image1: string,
     image2: string,
-    status: 'pending | complete | not_now|assined_to_other'
+    status: 'pending' | 'complete' | 'not_now' | 'assined_to_other'
 }

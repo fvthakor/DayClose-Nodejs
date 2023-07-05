@@ -45,7 +45,8 @@ class AuthService extends Service_1.default {
         this.register = (data) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const password = data.password ? data.password : '123456';
-                const hash = yield bcrypt.hash(password, process.env.PASSWORD_SALT ? +process.env.PASSWORD_SALT : 10);
+                const solt = process.env.PASSWORD_SALT ? +process.env.PASSWORD_SALT : 10;
+                const hash = yield bcrypt.hash(password.toString(), solt);
                 const user = yield models_1.User.create(Object.assign(Object.assign({}, data), { role: data.role ? data.role : 'employee', email: data.email ? data.email : `${Date.now() + '-' + Math.round(Math.random() * 1E9)}@gmail.com`, password: hash }));
                 return this.response({
                     code: 200,
@@ -54,6 +55,7 @@ class AuthService extends Service_1.default {
                 });
             }
             catch (error) {
+                console.log(error);
                 return this.response({ code: 500, message: error.message, data: null });
             }
         });

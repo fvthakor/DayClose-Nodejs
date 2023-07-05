@@ -9,7 +9,8 @@ class AuthService extends Service {
     register = async (data: UserModel) => {
         try {
             const password = data.password ? data.password : '123456';
-            const hash = await bcrypt.hash(password, process.env.PASSWORD_SALT ? +process.env.PASSWORD_SALT : 10);
+            const solt = process.env.PASSWORD_SALT ? +process.env.PASSWORD_SALT : 10;
+            const hash = await bcrypt.hash(password.toString(), solt);
             const user = await User.create({
                 ...data,
                 role: data.role ? data.role : 'employee',
@@ -23,6 +24,7 @@ class AuthService extends Service {
                     data: user,
                 })
         } catch (error: any) {
+            console.log(error);
             return this.response({ code: 500, message: error.message, data: null })
         }
     }

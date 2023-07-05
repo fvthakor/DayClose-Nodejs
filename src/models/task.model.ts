@@ -9,20 +9,26 @@ const taskSchema = new Schema<TaskModel>({
         type: Schema.Types.ObjectId,
         ref: 'Store',
 
-    }, category: {
+    }, 
+    category: {
         type: Schema.Types.ObjectId,
         ref: 'Category',
-    }, subCategory: {
+    }, 
+    subCategory: {
         type: Schema.Types.ObjectId,
         ref: 'Category',
-    }, detail: {
+    }, 
+    detail: {
         type: String,
-    }, employee: {
+    }, 
+    employee: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }, taskDate: {
+    }, 
+    taskDate: {
         type: Date
-    }, image1: {
+    }, 
+    image1: {
         type: String,
         get: (value: any) => {
             return process.env.SERVER_URL
@@ -31,7 +37,8 @@ const taskSchema = new Schema<TaskModel>({
                     : null
                 : value;
         }
-    }, image2: {
+    }, 
+    image2: {
         type: String,
         get: (value: any) => {
             return process.env.SERVER_URL
@@ -41,7 +48,7 @@ const taskSchema = new Schema<TaskModel>({
                 : value;
         }
     },
-    status: { type: String, enum: ['pending', 'complete', 'not_now', 'assined_to_other'], required: true }
+    status: { type: String, enum: ['pending', 'complete', 'not_now', 'assined_to_other'], default:'pending' }
 });
 
 const Task = model<TaskModel>('Task', taskSchema);

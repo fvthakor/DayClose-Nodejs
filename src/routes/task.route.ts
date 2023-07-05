@@ -9,4 +9,5 @@ taskRoute.get('/', [checkAuth(['manager'])], TaskController.getAll);
 taskRoute.get('/:id', [checkAuth(['manager'])], TaskController.getOne);
 taskRoute.put('/:id', [checkAuth(['manager'])], TaskController.update);
 taskRoute.delete('/:id', [checkAuth(['manager'])], TaskController.delete);
+
 export default taskRoute;

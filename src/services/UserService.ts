@@ -61,6 +61,19 @@ class UserService extends Service{
             return this.response({code: 500, message: 'Request failed due to an internal error.', data: null})
         }
     }
+
+    getEmployee = async(storeId:string) => {
+        try{
+            console.log('storeId',storeId);
+            const users = await User.find({
+                store: storeId,
+                role: 'employee'
+            });
+            return this.response({code: 200, message: 'All Store employee', data: users}) 
+        }catch(error:any){
+            return this.response({code: 500, message: error.message, data: []})
+        }
+    } 
 }
 
 export default new UserService();
