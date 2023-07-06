@@ -8,6 +8,7 @@ import PincodeController from "./PincodeController";
 import CategoryController from "./CategoryController";
 import TaskStatusController from "./TaskStatusController";
 import TaskController from "./TaskController";
+import TaskProgressController from "./TaskProgressController";
 export {
     AuthController,
     UserController,
@@ -18,6 +19,7 @@ export {
     PincodeController,
     CategoryController,
     TaskStatusController,
-    TaskController
+    TaskController,
+    TaskProgressController
 
 }

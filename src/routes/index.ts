@@ -9,6 +9,7 @@ import pincodeRoute from "./pincode.route";
 import categoryRoute from "./category.route";
 import taskStatusRoute from "./taskStatus.route";
 import taskRoute from "./task.route";
+import taskProgress from "./taskProgress.route";
 const restRouter = express.Router();
 
 restRouter.use('/auth', authRoute)
@@ -20,5 +21,7 @@ restRouter.use('/city', cityRoute);
 restRouter.use('/pincode', pincodeRoute);
 restRouter.use('/category', categoryRoute);
 restRouter.use('/task-status', taskStatusRoute);
-restRouter.use('/task', taskRoute)
+restRouter.use('/task', taskRoute);
+restRouter.use('/task-progress', taskProgress);
+
 export { restRouter };

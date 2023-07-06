@@ -8,6 +8,7 @@ import PincodeService from "./PincodeService";
 import CategoryService from "./CategoryService";
 import TaskStatusService from "./TaskStatusService";
 import TaskService from "./TaskService";
+import TaskProgressService from "./TaskProgressService";
 export {
     AuthService,
     UserService,
@@ -18,5 +19,6 @@ export {
     PincodeService,
     CategoryService,
     TaskStatusService,
-    TaskService
+    TaskService,
+    TaskProgressService
 }
