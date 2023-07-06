@@ -25,7 +25,11 @@ class TaskService extends Service {
                     { "status": { $regex: new RegExp(query, "ig") } },
                 ]
             }
-            const task = await Task.find(where).populate('employee').skip(skip).limit(limit2);
+            const task = await Task.find(where)
+            .populate('category')
+            .populate('store')
+            .populate('subCategory')
+            .populate('employee').skip(skip).limit(limit2);
             const total = await Task.countDocuments(where);
 
             return this.response({ code: 200, message: 'Task status', data: task, total });

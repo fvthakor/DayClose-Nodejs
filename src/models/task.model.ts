@@ -49,7 +49,7 @@ const taskSchema = new Schema<TaskModel>({
         }
     },
     status: { type: String, enum: ['pending', 'complete', 'not_now', 'assined_to_other'], default:'pending' }
-});
+}, { toJSON: { getters: true } });
 
 const Task = model<TaskModel>('Task', taskSchema);
 export default Task;

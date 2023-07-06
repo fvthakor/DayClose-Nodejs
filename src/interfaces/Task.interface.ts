@@ -1,8 +1,8 @@
 import { ObjectId } from "mongoose";
 
 export interface TaskModel {
-    user: ObjectId,
-    store: ObjectId,
+    user?: string,
+    store?: string,
     category: ObjectId,
     subCategory: ObjectId,
     detail: string,

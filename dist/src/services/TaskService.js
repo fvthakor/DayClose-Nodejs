@@ -39,7 +39,11 @@ class TaskService extends Service_1.default {
                         { "status": { $regex: new RegExp(query, "ig") } },
                     ];
                 }
-                const task = yield models_1.Task.find(where).populate('employee').skip(skip).limit(limit2);
+                const task = yield models_1.Task.find(where)
+                    .populate('category')
+                    .populate('store')
+                    .populate('subCategory')
+                    .populate('employee').skip(skip).limit(limit2);
                 const total = yield models_1.Task.countDocuments(where);
                 return this.response({ code: 200, message: 'Task status', data: task, total });
             }

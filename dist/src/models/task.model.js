@@ -49,6 +49,6 @@ const taskSchema = new mongoose_1.Schema({
         }
     },
     status: { type: String, enum: ['pending', 'complete', 'not_now', 'assined_to_other'], default: 'pending' }
-});
+}, { toJSON: { getters: true } });
 const Task = (0, mongoose_1.model)('Task', taskSchema);
 exports.default = Task;
