@@ -50,6 +50,17 @@ class TaskStatusService extends Service_1.default {
             }
         });
     }
+    all() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const taskStatus = yield taskStatus_model_1.default.find();
+                return this.response({ code: 200, message: 'Task status list', data: taskStatus });
+            }
+            catch (err) {
+                return this.response({ code: 500, message: err.message, data: null });
+            }
+        });
+    }
     getOne(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

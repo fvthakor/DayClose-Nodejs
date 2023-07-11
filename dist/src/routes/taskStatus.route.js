@@ -8,6 +8,7 @@ const controllers_1 = require("../controllers");
 const middleware_1 = require("../middleware");
 const taskStatusRoute = express_1.default.Router();
 taskStatusRoute.post('/', [(0, middleware_1.checkAuth)(['manager'])], controllers_1.TaskStatusController.create);
+taskStatusRoute.get('/all', [(0, middleware_1.checkAuth)(['manager'])], controllers_1.TaskStatusController.all);
 taskStatusRoute.get('/', [(0, middleware_1.checkAuth)(['manager'])], controllers_1.TaskStatusController.getAll);
 taskStatusRoute.get('/:id', [(0, middleware_1.checkAuth)(['manager'])], controllers_1.TaskStatusController.getOne);
 taskStatusRoute.put('/:id', [(0, middleware_1.checkAuth)(['manager'])], controllers_1.TaskStatusController.update);

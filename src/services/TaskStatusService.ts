@@ -13,9 +13,8 @@ class TaskStatusService extends Service {
             return this.response({ code: 500, message: error.message, data: [] });
         }
     }
-    async getAll(req:Request) {
+    async getAll(req: Request) {
         try {
-            
             let { page, limit, query } = req.query;
             console.log(page);
             console.log(limit);
@@ -29,11 +28,19 @@ class TaskStatusService extends Service {
                 ]
             }
             const taskStatus = await Taskstatus.find(where).skip(skip).limit(limit2);
-                        const total = await Taskstatus.countDocuments(where);
+            const total = await Taskstatus.countDocuments(where);
 
-            return this.response({ code: 200, message: 'Task status', data: taskStatus,total });
+            return this.response({ code: 200, message: 'Task status', data: taskStatus, total });
         } catch (error: any) {
             return this.response({ code: 500, message: error.message, data: [] });
+        }
+    }
+    async all() {
+        try {
+            const taskStatus = await Taskstatus.find();
+            return this.response({ code: 200, message: 'Task status list', data: taskStatus });
+        } catch (err: any) {
+            return this.response({ code: 500, message: err.message, data: null })
         }
     }
     async getOne(id: string) {

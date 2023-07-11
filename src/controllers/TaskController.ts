@@ -11,7 +11,7 @@ class TaskController {
 
         const files: any = req.files;
         let body: TaskModel = req.body;
-        console.log('files',files);
+        console.log('files', files);
         if (files['image1']) {
             body.image1 = files['image1'][0].path.replace(/\\/g, "/");
         }
@@ -22,6 +22,7 @@ class TaskController {
         return res.status(response.code).json(response);
     }
     getAll = async (req: Request, res: Response) => {
+
         const response = await TaskService.getAll(req);
         return res.status(response.code).json(response);
     }
@@ -32,7 +33,7 @@ class TaskController {
     update = async (req: Request, res: Response) => {
         const files: any = req.files;
         let body: TaskModel = req.body;
-        console.log('files',files);
+        console.log('files', files);
         if (files['image1']) {
             body.image1 = files['image1'][0].path.replace(/\\/g, "/");
         }
