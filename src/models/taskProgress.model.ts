@@ -18,10 +18,24 @@ const taskProgressSchema = new Schema<TaskProgressModel>({
         type: String
     }, image1: {
         type: String,
+        get: (value: any) => {
+            return process.env.SERVER_URL
+                ? value
+                    ? `${process.env.SERVER_URL}/${value}`
+                    : null
+                : value;
+        }
     }, image2: {
-        type: String
+        type: String,
+        get: (value: any) => {
+            return process.env.SERVER_URL
+                ? value
+                    ? `${process.env.SERVER_URL}/${value}`
+                    : null
+                : value;
+        }
     }
-});
+}, { toJSON: { getters: true } });
 
 const TaskProgress = model<TaskProgressModel>('TaskProgress', taskProgressSchema);
 

@@ -7,6 +7,7 @@ import { Request } from "express";
 class TaskProgressService extends Service {
     async create(data: TaskProgressModel) {
         try {
+            console.log('task create', data);
             const taskProgress = await TaskProgress.create(data);
             return this.response({ code: 200, message: 'TaskProgress added successfully', data: taskProgress })
         } catch (error: any) {

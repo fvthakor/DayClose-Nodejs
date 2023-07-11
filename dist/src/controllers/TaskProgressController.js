@@ -13,7 +13,16 @@ const services_1 = require("../services");
 class TaskProgressController {
     constructor() {
         this.create = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.TaskProgressService.create(req.body);
+            const files = req.files;
+            let body = req.body;
+            console.log('files', files);
+            if (files['image1']) {
+                body.image1 = files['image1'][0].path.replace(/\\/g, "/");
+            }
+            if (files['image2']) {
+                body.image2 = files['image2'][0].path.replace(/\\/g, "/");
+            }
+            const response = yield services_1.TaskProgressService.create(Object.assign(Object.assign({}, body), { store: req.storeId, user: req.userId }));
             return res.status(response.code).json(response);
         });
         this.getAll = (req, res) => __awaiter(this, void 0, void 0, function* () {
@@ -29,7 +38,16 @@ class TaskProgressController {
             return res.status(response.code).json(response);
         });
         this.update = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.TaskProgressService.update(req.params.id, req.body);
+            const files = req.files;
+            let body = req.body;
+            console.log('files', files);
+            if (files['image1']) {
+                body.image1 = files['image1'][0].path.replace(/\\/g, "/");
+            }
+            if (files['image2']) {
+                body.image2 = files['image2'][0].path.replace(/\\/g, "/");
+            }
+            const response = yield services_1.TaskProgressService.update(req.params.id, body);
             return res.status(response.code).json(response);
         });
         this.delete = (req, res) => __awaiter(this, void 0, void 0, function* () {

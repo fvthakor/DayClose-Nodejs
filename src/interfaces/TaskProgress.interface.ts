@@ -1,8 +1,8 @@
 import { ObjectId } from "mongoose";
 
 export interface TaskProgressModel {
-    store: ObjectId,
-    user: ObjectId,
+    store?: string,
+    user?: string,
     task: ObjectId,
     taskStatus: ObjectId,
     remark: ObjectId,

@@ -1,4 +1,5 @@
 import { TaskModel } from "../interfaces";
+import RequestCustom from "../interfaces/RequestCustom.interface";
 import { Task } from "../models";
 import Service from "./Service";
 import { Request } from "express";
@@ -12,21 +13,23 @@ class TaskService extends Service {
             return this.response({ code: 500, message: error.message, data: null })
         }
     }
-    async getAll(req: Request) {
+    async getAll(req: RequestCustom) {
         try {
 
             let { page, limit, query } = req.query;
             let skip = page && typeof page === 'string' ? Number(page) : 1
             const limit2 = limit && typeof limit === 'string' ? Number(limit) : 10;
             skip = (skip - 1) * limit2;
-            let where: any = {}
+            let where: any = {store: req.storeId}
             if (typeof query === 'string' && query.trim() !== '') {
                 where['$or'] = [
                     { "status": { $regex: new RegExp(query, "ig") } },
                 ]
             }
 
-
+            if(req.role === 'employee'){
+                where.employee = req.userId
+            }   
             const task = await Task.find(where)
                 .populate('category')
                 .populate('store')

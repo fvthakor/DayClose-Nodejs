@@ -33,11 +33,14 @@ class TaskService extends Service_1.default {
                 let skip = page && typeof page === 'string' ? Number(page) : 1;
                 const limit2 = limit && typeof limit === 'string' ? Number(limit) : 10;
                 skip = (skip - 1) * limit2;
-                let where = {};
+                let where = { store: req.storeId };
                 if (typeof query === 'string' && query.trim() !== '') {
                     where['$or'] = [
                         { "status": { $regex: new RegExp(query, "ig") } },
                     ];
+                }
+                if (req.role === 'employee') {
+                    where.employee = req.userId;
                 }
                 const task = yield models_1.Task.find(where)
                     .populate('category')

@@ -57,6 +57,7 @@ const checkAuth = (roles) => {
                         if (roles.includes(decoded.role)) {
                             req.userId = decoded._id;
                             req.storeId = decoded.store;
+                            req.role = decoded.role;
                             return next();
                         }
                         else {

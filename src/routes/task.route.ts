@@ -10,8 +10,8 @@ const cpUpload = uploadFile.fields(
 );
 
 taskRoute.post('/', [checkAuth(['manager']), cpUpload], TaskController.create);
-taskRoute.get('/', [checkAuth(['manager'])], TaskController.getAll);
-taskRoute.get('/:id', [checkAuth(['manager'])], TaskController.getOne);
+taskRoute.get('/', [checkAuth(['manager', 'employee'])], TaskController.getAll);
+taskRoute.get('/:id', [checkAuth(['manager', 'employee'])], TaskController.getOne);
 taskRoute.put('/:id', [checkAuth(['manager']), cpUpload], TaskController.update);
 taskRoute.delete('/:id', [checkAuth(['manager'])], TaskController.delete);
 

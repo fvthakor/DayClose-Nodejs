@@ -18,9 +18,23 @@ const taskProgressSchema = new mongoose_1.Schema({
         type: String
     }, image1: {
         type: String,
+        get: (value) => {
+            return process.env.SERVER_URL
+                ? value
+                    ? `${process.env.SERVER_URL}/${value}`
+                    : null
+                : value;
+        }
     }, image2: {
-        type: String
+        type: String,
+        get: (value) => {
+            return process.env.SERVER_URL
+                ? value
+                    ? `${process.env.SERVER_URL}/${value}`
+                    : null
+                : value;
+        }
     }
-});
+}, { toJSON: { getters: true } });
 const TaskProgress = (0, mongoose_1.model)('TaskProgress', taskProgressSchema);
 exports.default = TaskProgress;

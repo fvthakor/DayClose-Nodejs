@@ -18,6 +18,7 @@ class TaskProgressService extends Service_1.default {
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                console.log('task create', data);
                 const taskProgress = yield models_1.TaskProgress.create(data);
                 return this.response({ code: 200, message: 'TaskProgress added successfully', data: taskProgress });
             }

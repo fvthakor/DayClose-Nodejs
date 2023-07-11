@@ -5,4 +5,5 @@ export default interface RequestCustom extends Request {
     userId?: string,
     roleId?: string,
     storeId?: string,
+    role?:string
 }
