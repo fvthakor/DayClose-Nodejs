@@ -47,6 +47,29 @@ class TaskProgressService extends Service_1.default {
             }
         });
     }
+    taskStatus(req) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let { page, limit, query } = req.query;
+                let skip = page && typeof page === 'string' ? Number(page) : 1;
+                const limit2 = limit && typeof limit === 'string' ? Number(limit) : 10;
+                skip = (skip - 1) * limit2;
+                let where = {};
+                if (typeof query === 'string' && query.trim() !== '') {
+                    where['$or'] = [
+                        { "pincode": { $regex: new RegExp(query, "ig") } },
+                    ];
+                }
+                //console.log(req.params.id);
+                var wherecheck = { task: req.params.id };
+                const taskProgress = yield models_1.TaskProgress.find(wherecheck).skip(skip).limit(limit2).populate("taskStatus").populate('task');
+                return this.response({ code: 200, message: 'Task Progress list', data: taskProgress });
+            }
+            catch (error) {
+                return this.response({ code: 500, message: error.message, data: null });
+            }
+        });
+    }
     getOne(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

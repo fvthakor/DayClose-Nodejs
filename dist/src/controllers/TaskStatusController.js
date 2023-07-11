@@ -32,6 +32,10 @@ class TaskStatusController {
             const response = yield services_1.TaskStatusService.delete(req.params.id);
             return res.status(response.code).json(response);
         });
+        this.all = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const response = yield services_1.TaskStatusService.all();
+            return res.status(response.code).json(response);
+        });
     }
 }
 exports.default = new TaskStatusController();

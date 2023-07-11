@@ -8,7 +8,7 @@ class TaskStatusController {
 
     }
     create = async (req: RequestCustom, res: Response) => {
-        const response = await TaskStatusService.create({...req.body, store: req.storeId, user: req.userId});
+        const response = await TaskStatusService.create({ ...req.body, store: req.storeId, user: req.userId });
         return res.status(response.code).json(response);
     }
     getAll = async (req: Request, res: Response) => {
@@ -27,6 +27,10 @@ class TaskStatusController {
     }
     delete = async (req: Request, res: Response) => {
         const response = await TaskStatusService.delete(req.params.id);
+        return res.status(response.code).json(response);
+    }
+    all = async (req: Request, res: Response) => {
+        const response = await TaskStatusService.all();
         return res.status(response.code).json(response);
     }
 

@@ -14,6 +14,10 @@ class TaskProgressController {
         const response = await TaskProgressService.getAll(req);
         return res.status(response.code).json(response);
     }
+    taskStatus = async (req: Request, res: Response) => {
+        const response = await TaskProgressService.taskStatus(req);
+        return res.status(response.code).json(response);
+    }
     getOne = async (req: Request, res: Response) => {
         const response = await TaskProgressService.getOne(req.params.id);
         return res.status(response.code).json(response);

@@ -20,6 +20,10 @@ class TaskProgressController {
             const response = yield services_1.TaskProgressService.getAll(req);
             return res.status(response.code).json(response);
         });
+        this.taskStatus = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const response = yield services_1.TaskProgressService.taskStatus(req);
+            return res.status(response.code).json(response);
+        });
         this.getOne = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const response = yield services_1.TaskProgressService.getOne(req.params.id);
             return res.status(response.code).json(response);
