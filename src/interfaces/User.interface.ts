@@ -22,5 +22,5 @@ export interface UserModel {
     remark2: string,
     employeePhoto: string,
     password: string,
-    role: 'admin | employee | manager',
+    role: 'admin' | 'employee' | 'manager',
 };

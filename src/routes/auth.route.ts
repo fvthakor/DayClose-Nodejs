@@ -10,7 +10,7 @@ const cpUpload = uploadFile.fields(
     [{name:'documentFront', maxCount: 1}, {name:'documentBack', maxCount: 1}, {name:'employeePhoto', maxCount: 1}]
 );
 
-authRoute.post('/register', cpUpload, AuthController.register);
+authRoute.post('/register', [checkAuth(['admin', 'manager']), cpUpload] , AuthController.register);
 authRoute.post('/login', AuthController.login);
 authRoute.get('/me', [checkAuth(['admin', 'manager', 'employee'])], AuthController.me);
 

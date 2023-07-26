@@ -65,11 +65,14 @@ class StoreService extends Service_1.default {
                         { "name": { $regex: new RegExp(query, "ig") } },
                         { "number": { $regex: new RegExp(query, "ig") } },
                         { "address": { $regex: new RegExp(query, "ig") } },
-                        { "city": { $regex: new RegExp(query, "ig") } },
-                        { "pincode": { $regex: new RegExp(query, "ig") } },
+                        //{ "city": { $regex: new RegExp(query, "ig") } },
+                        //{ "pincode": { $regex: new RegExp(query, "ig") } },
                     ];
                 }
-                const stores = yield models_1.Store.find(where).skip(skip).limit(limit2);
+                const stores = yield models_1.Store.find(where)
+                    .populate('city')
+                    .populate('pincode')
+                    .skip(skip).limit(limit2);
                 const total = yield models_1.Store.countDocuments(where);
                 return this.response({ code: 200, message: 'All Store', data: stores, total });
             }

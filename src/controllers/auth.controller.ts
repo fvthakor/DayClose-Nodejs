@@ -18,7 +18,7 @@ class AuthController {
         return res.status(200).json(response);
     }
 
-    register = async (req: Request, res: Response) => {
+    register = async (req: RequestCustom, res: Response) => {
         const files: any = req.files;
         let body: UserModel = req.body;
         if (files['documentFront']) {
@@ -30,6 +30,7 @@ class AuthController {
         if (files['employeePhoto']) {
             body.employeePhoto = files['employeePhoto'][0].path.replace(/\\/g, "/");
         }
+        body.role = req.role === 'admin' ? 'manager' : 'employee';
         const response = await AuthService.register(body);
         return res.status(response.code).json(response);
     }

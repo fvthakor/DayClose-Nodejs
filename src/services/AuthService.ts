@@ -8,6 +8,13 @@ import { Response } from "express";
 class AuthService extends Service {
     register = async (data: UserModel) => {
         try {
+
+            const checkUser = await User.findOne({
+                email: data.email
+            })
+            if(checkUser){
+                return this.response({ code: 400, message: 'Email already exits!', data: null })                
+            }
             const password = data.password ? data.password : '123456';
             const solt = process.env.PASSWORD_SALT ? +process.env.PASSWORD_SALT : 10;
             const hash = await bcrypt.hash(password.toString(), solt);
@@ -39,7 +46,10 @@ class AuthService extends Service {
                     name: user.name,
                     role: user.role,
                     email: user.email,
-                    store: user.store
+                    store: user.store,
+                    address: user.address,
+                    city: user.city,
+                    pincode: user.pincode,
                 }
                 const token = jwt.sign(userData, process.env.ACCESS_TOKEN_SECRET ? process.env.ACCESS_TOKEN_SECRET : 'drc');
                 res.cookie('authToken', token);
@@ -66,6 +76,9 @@ class AuthService extends Service {
                 role: user.role,
                 email: user.email,
                 store: user.store,
+                address: user.address,
+                    city: user.city,
+                    pincode: user.pincode,
                 pic: user.employeePhoto ? user.employeePhoto : './assets/media/avatars/300-1.jpg'
             }
             return userData;

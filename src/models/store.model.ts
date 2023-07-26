@@ -5,8 +5,12 @@ const storeSchema = new Schema<StoreModel>({
     name: { type: String, required: true },
     number: { type: String, required: true },
     address: { type: String, required: true },
-    city: { type: String, required: true },
-    pincode: { type: String, required: true },
+    city: {
+        type: Schema.Types.ObjectId, ref: 'City'
+    },
+    pincode: {
+        type: Schema.Types.ObjectId, ref: 'Pincode'
+    },
 });
 
 const Store = model<StoreModel>('Store', storeSchema);

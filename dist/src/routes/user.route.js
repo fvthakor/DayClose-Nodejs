@@ -8,7 +8,7 @@ const controllers_1 = require("../controllers");
 const middleware_1 = require("../middleware");
 const userRoute = express_1.default.Router();
 userRoute.post('/', controllers_1.UserController.create);
-userRoute.get('/', controllers_1.UserController.getAll);
+userRoute.get('/', (0, middleware_1.checkAuth)(['admin', 'manager']), controllers_1.UserController.getAll);
 userRoute.get('/employee', (0, middleware_1.checkAuth)(['manager']), controllers_1.UserController.getEmployee);
 userRoute.get('/:id', controllers_1.UserController.getOne);
 userRoute.put('/:id', controllers_1.UserController.update);

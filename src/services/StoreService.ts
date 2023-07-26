@@ -48,11 +48,14 @@ class StoreService extends Service {
                     { "name": { $regex: new RegExp(query, "ig") } },
                     { "number": { $regex: new RegExp(query, "ig") } },
                     { "address": { $regex: new RegExp(query, "ig") } },
-                    { "city": { $regex: new RegExp(query, "ig") } },
-                    { "pincode": { $regex: new RegExp(query, "ig") } },
+                    //{ "city": { $regex: new RegExp(query, "ig") } },
+                    //{ "pincode": { $regex: new RegExp(query, "ig") } },
                 ]
             }
-            const stores = await Store.find(where).skip(skip).limit(limit2);
+            const stores = await Store.find(where)
+            .populate('city')
+                .populate('pincode')
+                .skip(skip).limit(limit2);
             const total = await Store.countDocuments(where);
             return this.response({ code: 200, message: 'All Store', data: stores, total })
         } catch (error: any) {

@@ -17,8 +17,8 @@ class UserController{
         return res.status(response.code).json(response);
     }
 
-    getAll = async(req:Request, res:Response) => {
-        const response = await UserService.getAll();
+    getAll = async(req:RequestCustom, res:Response) => {
+        const response = await UserService.getAll(req);
         return res.status(response.code).json(response);
     }
 
@@ -28,7 +28,7 @@ class UserController{
     }
     
     delete = async(req:Request, res:Response) => {
-        const response = await UserService.delete(+req.params.id);
+        const response = await UserService.delete(req.params.id);
         return res.status(response.code).json(response);
     }
 

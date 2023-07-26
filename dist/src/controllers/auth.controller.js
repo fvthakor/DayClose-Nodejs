@@ -32,6 +32,7 @@ class AuthController {
             if (files['employeePhoto']) {
                 body.employeePhoto = files['employeePhoto'][0].path.replace(/\\/g, "/");
             }
+            body.role = req.role === 'admin' ? 'manager' : 'employee';
             const response = yield services_1.AuthService.register(body);
             return res.status(response.code).json(response);
         });

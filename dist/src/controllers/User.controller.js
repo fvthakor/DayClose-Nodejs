@@ -21,7 +21,7 @@ class UserController {
             return res.status(response.code).json(response);
         });
         this.getAll = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.UserService.getAll();
+            const response = yield services_1.UserService.getAll(req);
             return res.status(response.code).json(response);
         });
         this.update = (req, res) => __awaiter(this, void 0, void 0, function* () {
@@ -29,7 +29,7 @@ class UserController {
             return res.status(response.code).json(response);
         });
         this.delete = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.UserService.delete(+req.params.id);
+            const response = yield services_1.UserService.delete(req.params.id);
             return res.status(response.code).json(response);
         });
         this.getEmployee = (req, res) => __awaiter(this, void 0, void 0, function* () {

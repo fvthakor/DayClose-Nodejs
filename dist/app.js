@@ -21,6 +21,7 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const app = (0, express_1.default)();
 //app.use(cors())
 app.use((0, cors_1.default)({ credentials: true, origin: 'http://localhost:4200' }));
+// app.use(bodyParser({limit: '50mb'}));
 app.use((0, cookie_parser_1.default)());
 // app.use(function (req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "*");
@@ -32,9 +33,9 @@ app.get('/api', (req, res) => {
 });
 const port = process.env.PORT;
 // parse application/x-www-form-urlencoded
-app.use(body_parser_1.default.urlencoded({ extended: false }));
+app.use(body_parser_1.default.urlencoded({ extended: false, limit: '50mb' }));
 // parse application/json
-app.use(body_parser_1.default.json());
+app.use(body_parser_1.default.json({ limit: '50mb' }));
 database_1.default.then(() => {
     console.log('database connected successfully!');
 }).catch((error) => {

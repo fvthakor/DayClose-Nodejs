@@ -58,7 +58,6 @@ class UserService extends Service_1.default {
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log('data', data);
                 const hash = yield bcrypt.hash(data.password, process.env.PASSWORD_SALT ? +process.env.PASSWORD_SALT : 10);
                 const user = yield models_1.User.create(Object.assign(Object.assign({}, data), { password: hash }));
                 return this.response({ code: 201, message: 'User added successfully!', data: user });
@@ -98,11 +97,32 @@ class UserService extends Service_1.default {
             }
         });
     }
-    getAll() {
+    getAll(req) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const users = yield models_1.User.find();
-                return this.response({ code: 200, message: 'All Users', data: users });
+                let { page, limit, query } = req.query;
+                let skip = page && typeof page === 'string' ? Number(page) : 1;
+                const limit2 = limit && typeof limit === 'string' ? Number(limit) : 10;
+                skip = (skip - 1) * limit2;
+                console.log('req.role', req.role);
+                let where = {
+                    role: req.role === 'admin' ? 'manager' : 'employee'
+                };
+                if (req.role === 'manager') {
+                    where.store = req.storeId;
+                }
+                if (typeof query === 'string' && query.trim() !== '') {
+                    where['$or'] = [
+                        { "firstName": { $regex: new RegExp(query, "ig") } },
+                        { "lastName": { $regex: new RegExp(query, "ig") } },
+                        { "address": { $regex: new RegExp(query, "ig") } },
+                        { "email": { $regex: new RegExp(query, "ig") } },
+                        //{ "pincode": { $regex: new RegExp(query, "ig") } },
+                    ];
+                }
+                const users = yield models_1.User.find(where).skip(skip).limit(limit2);
+                const total = yield models_1.User.countDocuments(where);
+                return this.response({ code: 200, message: 'All Users', data: users, total });
             }
             catch (error) {
                 return this.response({ code: 500, message: 'Request failed due to an internal error.', data: [] });
