@@ -16,7 +16,7 @@ class TaskService extends Service {
     async getAll(req: RequestCustom) {
         try {
 
-            let { page, limit, query } = req.query;
+            let { page, limit, query, taskDate } = req.query;
             let skip = page && typeof page === 'string' ? Number(page) : 1
             const limit2 = limit && typeof limit === 'string' ? Number(limit) : 10;
             skip = (skip - 1) * limit2;
@@ -27,6 +27,17 @@ class TaskService extends Service {
                 ]
             }
 
+            if(typeof taskDate === 'string' && taskDate.trim() !== '' ){
+                // if(where['$or']){
+                //     where['$or'].push( { "taskDate": taskDate  });
+                // }else{
+                //     where[taskDate] = [
+                //         { "taskDate": taskDate  },
+                //     ];
+                // }
+                where['taskDate'] = taskDate;
+            }
+            //console.log(where);
             if(req.role === 'employee'){
                 where.employee = req.userId
             }   

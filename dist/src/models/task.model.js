@@ -28,6 +28,9 @@ const taskSchema = new mongoose_1.Schema({
     taskDate: {
         type: Date
     },
+    taskTime: {
+        type: String,
+    },
     image1: {
         type: String,
         get: (value) => {
@@ -48,7 +51,8 @@ const taskSchema = new mongoose_1.Schema({
                 : value;
         }
     },
-    status: { type: String, enum: ['pending', 'complete', 'not_now', 'assined_to_other'], default: 'pending' }
+    status: { type: String, enum: ['pending', 'complete', 'not_now', 'assined_to_other'], default: 'pending' },
+    priority: { type: String, enum: ['low', 'moderate', 'high'], default: 'low' }
 }, { toJSON: { getters: true } });
 const Task = (0, mongoose_1.model)('Task', taskSchema);
 exports.default = Task;

@@ -12,7 +12,7 @@ const cpUpload = UploadMiddleware_1.default.fields([{ name: 'image1', maxCount: 
 taskProgress.post('/', [(0, middleware_1.checkAuth)(['manager', 'employee']), cpUpload], controllers_1.TaskProgressController.create);
 taskProgress.get('/', [(0, middleware_1.checkAuth)(['manager', 'employee'])], controllers_1.TaskProgressController.getAll);
 taskProgress.get('/taskstatus/:id', [(0, middleware_1.checkAuth)(['manager', 'employee'])], controllers_1.TaskProgressController.taskStatus);
-taskProgress.get('/:id', [(0, middleware_1.checkAuth)(['manager'])], controllers_1.TaskProgressController.getOne);
+taskProgress.get('/:id', [(0, middleware_1.checkAuth)(['manager', 'employee'])], controllers_1.TaskProgressController.getOne);
 taskProgress.put('/:id', [(0, middleware_1.checkAuth)(['manager', 'employee']), cpUpload], controllers_1.TaskProgressController.update);
 taskProgress.delete('/:id', [(0, middleware_1.checkAuth)(['manager', 'employee'])], controllers_1.TaskProgressController.delete);
 exports.default = taskProgress;

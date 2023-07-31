@@ -12,8 +12,7 @@ const taskProgressSchema = new Schema<TaskProgressModel>({
         type: Schema.Types.ObjectId,
         ref: 'Task'
     }, taskStatus: {
-        type: Schema.Types.ObjectId,
-        ref: 'TaskSatus'
+        type: String
     }, remark: {
         type: String
     }, image1: {

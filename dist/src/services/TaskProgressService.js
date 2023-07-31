@@ -18,8 +18,10 @@ class TaskProgressService extends Service_1.default {
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log('task create', data);
                 const taskProgress = yield models_1.TaskProgress.create(data);
+                if (taskProgress) {
+                    yield models_1.Task.updateOne({ _id: data.task }, { status: data.taskStatus });
+                }
                 return this.response({ code: 200, message: 'TaskProgress added successfully', data: taskProgress });
             }
             catch (error) {
@@ -30,6 +32,7 @@ class TaskProgressService extends Service_1.default {
     getAll(req) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                console.log('test call');
                 let { page, limit, query } = req.query;
                 let skip = page && typeof page === 'string' ? Number(page) : 1;
                 const limit2 = limit && typeof limit === 'string' ? Number(limit) : 10;
@@ -40,7 +43,8 @@ class TaskProgressService extends Service_1.default {
                         { "pincode": { $regex: new RegExp(query, "ig") } },
                     ];
                 }
-                const taskProgress = yield models_1.TaskProgress.find().skip(skip).limit(limit2).populate("taskStatus").populate('task');
+                console.log(where);
+                const taskProgress = yield models_1.TaskProgress.find().skip(skip).limit(limit2).populate('task');
                 return this.response({ code: 200, message: 'Task Progress list', data: taskProgress });
             }
             catch (error) {
@@ -63,7 +67,7 @@ class TaskProgressService extends Service_1.default {
                 }
                 //console.log(req.params.id);
                 var wherecheck = { task: req.params.id };
-                const taskProgress = yield models_1.TaskProgress.find(wherecheck).skip(skip).limit(limit2).populate("taskStatus").populate('task');
+                const taskProgress = yield models_1.TaskProgress.find(wherecheck).skip(skip).limit(limit2).populate('task');
                 return this.response({ code: 200, message: 'Task Progress list', data: taskProgress });
             }
             catch (error) {
@@ -74,7 +78,7 @@ class TaskProgressService extends Service_1.default {
     getOne(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const taskProgress = yield models_1.TaskProgress.findById(id).populate("taskStatus").populate('task');
+                const taskProgress = yield models_1.TaskProgress.findById(id).populate('task');
                 return taskProgress ? this.response({ code: 200, message: 'Task progress by id', data: taskProgress })
                     : this.response({ code: 500, message: 'Task progress not found', data: null });
             }
@@ -86,8 +90,8 @@ class TaskProgressService extends Service_1.default {
     update(id, data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const taskProgress = yield models_1.TaskProgress.findByIdAndUpdate(id, data, { new: true });
-                return this.response({ code: 200, message: 'Task progress updated successfully', data: taskProgress });
+                //const taskProgress = await TaskProgress.findByIdAndUpdate(id, data, { new: true });
+                return this.response({ code: 200, message: 'Task progress updated successfully', data: [] });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: null });

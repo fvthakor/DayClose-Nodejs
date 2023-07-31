@@ -28,6 +28,9 @@ const taskSchema = new Schema<TaskModel>({
     taskDate: {
         type: Date
     }, 
+    taskTime: {
+        type: String,
+    },
     image1: {
         type: String,
         get: (value: any) => {
@@ -48,7 +51,8 @@ const taskSchema = new Schema<TaskModel>({
                 : value;
         }
     },
-    status: { type: String, enum: ['pending', 'complete', 'not_now', 'assined_to_other'], default:'pending' }
+    status: { type: String, enum: ['pending', 'complete', 'not_now', 'assined_to_other'], default:'pending' },
+    priority: { type: String, enum: ['low', 'moderate', 'high'], default:'low' }
 }, { toJSON: { getters: true } });
 
 const Task = model<TaskModel>('Task', taskSchema);

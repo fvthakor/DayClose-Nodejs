@@ -12,8 +12,7 @@ const taskProgressSchema = new mongoose_1.Schema({
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Task'
     }, taskStatus: {
-        type: mongoose_1.Schema.Types.ObjectId,
-        ref: 'TaskSatus'
+        type: String
     }, remark: {
         type: String
     }, image1: {
