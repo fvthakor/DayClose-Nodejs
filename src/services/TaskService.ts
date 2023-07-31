@@ -76,7 +76,6 @@ class TaskService extends Service {
             return this.response({ code: 500, message: error.message, data: null })
         }
     }
-
     async getTodayCount(req:RequestCustom){
         try {
             const newDate = this.formatDate(new Date());
@@ -97,7 +96,6 @@ class TaskService extends Service {
             return this.response({ code: 500, message: error.message, data: null })
         }
     }
-
 }
 
 export default new TaskService();
