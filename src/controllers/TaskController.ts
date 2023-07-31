@@ -7,15 +7,22 @@ class TaskController {
     constructor() {
 
     }
+
+    getTodayCount = async (req: Request, res: Response) => {
+        const response = await TaskService.getTodayCount(req);
+        return res.status(response.code).json(response);
+    }
+    
+
     create = async (req: RequestCustom, res: Response) => {
 
         const files: any = req.files;
         let body: TaskModel = req.body;
         console.log('files', files);
-        if (files['image1']) {
+        if (files && files['image1']) {
             body.image1 = files['image1'][0].path.replace(/\\/g, "/");
         }
-        if (files['image2']) {
+        if (files && files['image2']) {
             body.image2 = files['image2'][0].path.replace(/\\/g, "/");
         }
         const response = await TaskService.create({ ...body, store: req.storeId, user: req.userId });

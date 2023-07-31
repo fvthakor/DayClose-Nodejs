@@ -14,12 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const models_1 = require("../models");
 const Service_1 = __importDefault(require("./Service"));
-class CityService extends Service_1.default {
+class BannerService extends Service_1.default {
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const city = yield models_1.City.create(data);
-                return this.response({ code: 201, message: 'City added successfully!', data: city });
+                const newData = Object.assign(Object.assign({}, data), { text: data.text ? data.text : 'test', title: data.title ? data.title : 'test' });
+                const category = yield models_1.Banner.create(newData);
+                return this.response({ code: 201, message: 'Banner added successfully!', data: category });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: null });
@@ -29,10 +30,10 @@ class CityService extends Service_1.default {
     getOne(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const city = yield models_1.City.findById(id).populate('county');
-                return city
-                    ? this.response({ code: 200, message: 'City by id!', data: city })
-                    : this.response({ code: 400, message: 'City not found!', data: null });
+                const banner = yield models_1.Banner.findById(id);
+                return banner
+                    ? this.response({ code: 200, message: 'Banner by id!', data: banner })
+                    : this.response({ code: 400, message: 'Banner not found!', data: null });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: null });
@@ -42,10 +43,10 @@ class CityService extends Service_1.default {
     update(id, data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const city = yield models_1.City.findByIdAndUpdate(id, data, { new: true });
-                return city
-                    ? this.response({ code: 200, message: 'City updated successfully!', data: city })
-                    : this.response({ code: 400, message: 'City not found!', data: null });
+                const banner = yield models_1.Banner.findByIdAndUpdate(id, data, { new: true });
+                return banner
+                    ? this.response({ code: 200, message: 'Banner updated successfully!', data: banner })
+                    : this.response({ code: 400, message: 'Banner not found!', data: null });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: null });
@@ -62,12 +63,12 @@ class CityService extends Service_1.default {
                 let where = {};
                 if (typeof query === 'string' && query.trim() !== '') {
                     where['$or'] = [
-                        { "name": { $regex: new RegExp(query, "ig") } },
+                        { "title": { $regex: new RegExp(query, "ig") } },
                     ];
                 }
-                const cities = yield models_1.City.find(where).populate('county').skip(skip).limit(limit2);
-                const total = yield models_1.City.countDocuments(where);
-                return this.response({ code: 200, message: 'All Cities', data: cities, total });
+                const banners = yield models_1.Banner.find(where).skip(skip).limit(limit2);
+                const total = yield models_1.Banner.countDocuments(where);
+                return this.response({ code: 200, message: 'All Banners', data: banners, total });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: [] });
@@ -77,10 +78,10 @@ class CityService extends Service_1.default {
     delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const city = yield models_1.City.findByIdAndDelete(id);
-                return city
-                    ? this.response({ code: 200, message: 'City deleted successfully!', data: city })
-                    : this.response({ code: 400, message: 'City not found!', data: null });
+                const banner = yield models_1.Banner.findByIdAndDelete(id);
+                return banner
+                    ? this.response({ code: 200, message: 'Banner deleted successfully!', data: banner })
+                    : this.response({ code: 400, message: 'Banner not found!', data: null });
             }
             catch (error) {
                 return this.response({ code: 500, message: 'Request failed due to an internal error.', data: null });
@@ -90,19 +91,8 @@ class CityService extends Service_1.default {
     getAllData() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const cities = yield models_1.City.find().populate('pincodes');
-                return this.response({ code: 200, message: 'All Cities', data: cities });
-            }
-            catch (error) {
-                return this.response({ code: 500, message: error.message, data: [] });
-            }
-        });
-    }
-    getCountyCity(county) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const cities = yield models_1.City.find({ county: county }).populate('pincodes');
-                return this.response({ code: 200, message: 'All Cities', data: cities });
+                const banners = yield models_1.Banner.find();
+                return this.response({ code: 200, message: 'All Banners', data: banners });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: [] });
@@ -110,4 +100,4 @@ class CityService extends Service_1.default {
         });
     }
 }
-exports.default = new CityService();
+exports.default = new BannerService();

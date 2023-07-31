@@ -1,46 +1,39 @@
 import { Request, Response } from "express";
-import { CityService } from "../services";
+import { CountyService } from "../services";
 
-class CityController {
+class CountyController {
     constructor() {
 
     }
 
     create = async (req: Request, res: Response) => {
-        const response = await CityService.create(req.body);
+        const response = await CountyService.create(req.body);
         return res.status(response.code).json(response);
     }
 
     getOne = async (req: Request, res: Response) => {
-        const response = await CityService.getOne(req.params.id);
+        const response = await CountyService.getOne(req.params.id);
         return res.status(response.code).json(response);
     }
 
     getAll = async (req: Request, res: Response) => {
-        const response = await CityService.getAll(req);
+        const response = await CountyService.getAll(req);
         return res.status(response.code).json(response);
     }
 
     update = async (req: Request, res: Response) => {
-        const response = await CityService.update(req.params.id, req.body);
+        const response = await CountyService.update(req.params.id, req.body);
         return res.status(response.code).json(response);
     }
 
     delete = async (req: Request, res: Response) => {
-        const response = await CityService.delete(req.params.id);
+        const response = await CountyService.delete(req.params.id);
         return res.status(response.code).json(response);
     }
     getAllData = async (req: Request, res: Response) => {
-        const response = await CityService.getAllData();
+        const response = await CountyService.getAllData();
         return res.status(response.code).json(response);
     }
-
-    getCountyCity = async (req: Request, res: Response) => {
-        const response = await CityService.getCountyCity(typeof req.query.county ==='string' ? req.query.county : '');
-        return res.status(response.code).json(response);
-    }
-
-    
 }
 
-export default new CityController();
+export default new CountyController();

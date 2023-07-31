@@ -12,14 +12,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const services_1 = require("../services");
 class TaskController {
     constructor() {
+        this.getTodayCount = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const response = yield services_1.TaskService.getTodayCount(req);
+            return res.status(response.code).json(response);
+        });
         this.create = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const files = req.files;
             let body = req.body;
             console.log('files', files);
-            if (files['image1']) {
+            if (files && files['image1']) {
                 body.image1 = files['image1'][0].path.replace(/\\/g, "/");
             }
-            if (files['image2']) {
+            if (files && files['image2']) {
                 body.image2 = files['image2'][0].path.replace(/\\/g, "/");
             }
             const response = yield services_1.TaskService.create(Object.assign(Object.assign({}, body), { store: req.storeId, user: req.userId }));

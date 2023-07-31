@@ -23,13 +23,13 @@ class AuthController {
         this.register = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const files = req.files;
             let body = req.body;
-            if (files['documentFront']) {
+            if (files && files['documentFront']) {
                 body.documentFront = files['documentFront'][0].path.replace(/\\/g, "/");
             }
-            if (files['documentBack']) {
+            if (files && files['documentBack']) {
                 body.documentBack = files['documentBack'][0].path.replace(/\\/g, "/");
             }
-            if (files['employeePhoto']) {
+            if (files && files['employeePhoto']) {
                 body.employeePhoto = files['employeePhoto'][0].path.replace(/\\/g, "/");
             }
             body.role = req.role === 'admin' ? 'manager' : 'employee';

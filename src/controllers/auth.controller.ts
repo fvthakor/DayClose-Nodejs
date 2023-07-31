@@ -21,13 +21,13 @@ class AuthController {
     register = async (req: RequestCustom, res: Response) => {
         const files: any = req.files;
         let body: UserModel = req.body;
-        if (files['documentFront']) {
+        if (files && files['documentFront']) {
             body.documentFront = files['documentFront'][0].path.replace(/\\/g, "/");
         }
-        if (files['documentBack']) {
+        if (files && files['documentBack']) {
             body.documentBack = files['documentBack'][0].path.replace(/\\/g, "/");
         }
-        if (files['employeePhoto']) {
+        if (files && files['employeePhoto']) {
             body.employeePhoto = files['employeePhoto'][0].path.replace(/\\/g, "/");
         }
         body.role = req.role === 'admin' ? 'manager' : 'employee';

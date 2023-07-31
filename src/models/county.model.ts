@@ -1,26 +1,21 @@
-import { Schema, model } from "mongoose";
-import { CityModel } from "../interfaces";
+//County
 
-const citySchema = new Schema<CityModel>({
+import { Schema, model } from "mongoose";
+import { CountyModel } from "../interfaces";
+
+const countySchema = new Schema<CountyModel>({
     name: { type: String, required: true },
-    county: {
-        type: Schema.Types.ObjectId, ref: 'County'
-    }
 }, {
     toJSON: { virtuals: true }, // So `res.json()` and other `JSON.stringify()` functions include virtuals
     toObject: { virtuals: true } // So `console.log()` and other functions that use `toObject()` include virtuals
 });
 
-citySchema.virtual('pincodes', {
-    ref: 'Pincode',
+countySchema.virtual('cities', {
+    ref: 'City',
     localField: '_id',
-    foreignField: 'city'
+    foreignField: 'county'
 });
 
-const City = model<CityModel>('City', citySchema);
+const County = model<CountyModel>('County', countySchema);
 
-
-
-// /pincodes
-
-export default City;
+export default County;

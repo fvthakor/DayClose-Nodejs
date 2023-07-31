@@ -7,6 +7,8 @@ import Pincode from "./pincode.model";
 import Category from "./category.model";
 import Task from "./task.model";
 import TaskProgress from "./taskProgress.model";
+import Banner from "./banner.model";
+import County from "./county.model";
 export {
     User,
     Store,
@@ -16,5 +18,7 @@ export {
     Pincode,
     Category,
     Task,
-    TaskProgress
+    TaskProgress,
+    Banner,
+    County
 }

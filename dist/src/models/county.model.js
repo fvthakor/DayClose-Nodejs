@@ -1,20 +1,17 @@
 "use strict";
+//County
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
-const citySchema = new mongoose_1.Schema({
+const countySchema = new mongoose_1.Schema({
     name: { type: String, required: true },
-    county: {
-        type: mongoose_1.Schema.Types.ObjectId, ref: 'County'
-    }
 }, {
     toJSON: { virtuals: true },
     toObject: { virtuals: true } // So `console.log()` and other functions that use `toObject()` include virtuals
 });
-citySchema.virtual('pincodes', {
-    ref: 'Pincode',
+countySchema.virtual('cities', {
+    ref: 'City',
     localField: '_id',
-    foreignField: 'city'
+    foreignField: 'county'
 });
-const City = (0, mongoose_1.model)('City', citySchema);
-// /pincodes
-exports.default = City;
+const County = (0, mongoose_1.model)('County', countySchema);
+exports.default = County;

@@ -14,12 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const models_1 = require("../models");
 const Service_1 = __importDefault(require("./Service"));
-class CityService extends Service_1.default {
+class CountyService extends Service_1.default {
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const city = yield models_1.City.create(data);
-                return this.response({ code: 201, message: 'City added successfully!', data: city });
+                const city = yield models_1.County.create(data);
+                return this.response({ code: 201, message: 'County added successfully!', data: city });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: null });
@@ -29,10 +29,10 @@ class CityService extends Service_1.default {
     getOne(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const city = yield models_1.City.findById(id).populate('county');
+                const city = yield models_1.County.findById(id);
                 return city
-                    ? this.response({ code: 200, message: 'City by id!', data: city })
-                    : this.response({ code: 400, message: 'City not found!', data: null });
+                    ? this.response({ code: 200, message: 'County by id!', data: city })
+                    : this.response({ code: 400, message: 'County not found!', data: null });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: null });
@@ -42,10 +42,10 @@ class CityService extends Service_1.default {
     update(id, data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const city = yield models_1.City.findByIdAndUpdate(id, data, { new: true });
+                const city = yield models_1.County.findByIdAndUpdate(id, data, { new: true });
                 return city
-                    ? this.response({ code: 200, message: 'City updated successfully!', data: city })
-                    : this.response({ code: 400, message: 'City not found!', data: null });
+                    ? this.response({ code: 200, message: 'County updated successfully!', data: city })
+                    : this.response({ code: 400, message: 'County not found!', data: null });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: null });
@@ -65,9 +65,9 @@ class CityService extends Service_1.default {
                         { "name": { $regex: new RegExp(query, "ig") } },
                     ];
                 }
-                const cities = yield models_1.City.find(where).populate('county').skip(skip).limit(limit2);
-                const total = yield models_1.City.countDocuments(where);
-                return this.response({ code: 200, message: 'All Cities', data: cities, total });
+                const cities = yield models_1.County.find(where).skip(skip).limit(limit2);
+                const total = yield models_1.County.countDocuments(where);
+                return this.response({ code: 200, message: 'All County', data: cities, total });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: [] });
@@ -77,10 +77,10 @@ class CityService extends Service_1.default {
     delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const city = yield models_1.City.findByIdAndDelete(id);
+                const city = yield models_1.County.findByIdAndDelete(id);
                 return city
-                    ? this.response({ code: 200, message: 'City deleted successfully!', data: city })
-                    : this.response({ code: 400, message: 'City not found!', data: null });
+                    ? this.response({ code: 200, message: 'County deleted successfully!', data: city })
+                    : this.response({ code: 400, message: 'County not found!', data: null });
             }
             catch (error) {
                 return this.response({ code: 500, message: 'Request failed due to an internal error.', data: null });
@@ -90,19 +90,8 @@ class CityService extends Service_1.default {
     getAllData() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const cities = yield models_1.City.find().populate('pincodes');
-                return this.response({ code: 200, message: 'All Cities', data: cities });
-            }
-            catch (error) {
-                return this.response({ code: 500, message: error.message, data: [] });
-            }
-        });
-    }
-    getCountyCity(county) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const cities = yield models_1.City.find({ county: county }).populate('pincodes');
-                return this.response({ code: 200, message: 'All Cities', data: cities });
+                const cities = yield models_1.County.find();
+                return this.response({ code: 200, message: 'All County', data: cities });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: [] });
@@ -110,4 +99,4 @@ class CityService extends Service_1.default {
         });
     }
 }
-exports.default = new CityService();
+exports.default = new CountyService();

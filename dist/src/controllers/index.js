@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaskProgressController = exports.TaskController = exports.TaskStatusController = exports.CategoryController = exports.PincodeController = exports.CityController = exports.SkillController = exports.DocumentTypeController = exports.StoreController = exports.UserController = exports.AuthController = void 0;
+exports.CountyController = exports.BannerController = exports.TaskProgressController = exports.TaskController = exports.TaskStatusController = exports.CategoryController = exports.PincodeController = exports.CityController = exports.SkillController = exports.DocumentTypeController = exports.StoreController = exports.UserController = exports.AuthController = void 0;
 const auth_controller_1 = __importDefault(require("./auth.controller"));
 exports.AuthController = auth_controller_1.default;
 const User_controller_1 = __importDefault(require("./User.controller"));
@@ -26,3 +26,7 @@ const TaskController_1 = __importDefault(require("./TaskController"));
 exports.TaskController = TaskController_1.default;
 const TaskProgressController_1 = __importDefault(require("./TaskProgressController"));
 exports.TaskProgressController = TaskProgressController_1.default;
+const BannerController_1 = __importDefault(require("./BannerController"));
+exports.BannerController = BannerController_1.default;
+const CountyController_1 = __importDefault(require("./CountyController"));
+exports.CountyController = CountyController_1.default;

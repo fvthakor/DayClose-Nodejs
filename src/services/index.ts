@@ -9,6 +9,8 @@ import CategoryService from "./CategoryService";
 import TaskStatusService from "./TaskStatusService";
 import TaskService from "./TaskService";
 import TaskProgressService from "./TaskProgressService";
+import BannerService from "./BannerService";
+import CountyService from "./CountyService";
 export {
     AuthService,
     UserService,
@@ -20,5 +22,7 @@ export {
     CategoryService,
     TaskStatusService,
     TaskService,
-    TaskProgressService
+    TaskProgressService,
+    BannerService,
+    CountyService
 }

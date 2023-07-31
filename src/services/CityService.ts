@@ -15,7 +15,7 @@ class CityService extends Service {
 
     async getOne(id: string) {
         try {
-            const city = await City.findById(id);
+            const city = await City.findById(id).populate('county');
             return city
                 ? this.response({ code: 200, message: 'City by id!', data: city })
                 : this.response({ code: 400, message: 'City not found!', data: null })
@@ -47,7 +47,7 @@ class CityService extends Service {
                     { "name": { $regex: new RegExp(query, "ig") } },
                 ]
             }
-            const cities = await City.find(where).skip(skip).limit(limit2);
+            const cities = await City.find(where).populate('county').skip(skip).limit(limit2);
             const total = await City.countDocuments(where);
             return this.response({ code: 200, message: 'All Cities', data: cities, total })
         } catch (error: any) {
@@ -69,6 +69,15 @@ class CityService extends Service {
     async getAllData() {
         try {
             const cities = await City.find().populate('pincodes');
+            return this.response({ code: 200, message: 'All Cities', data: cities })
+        } catch (error: any) {
+            return this.response({ code: 500, message: error.message, data: [] })
+        }
+    }
+
+    async getCountyCity(county:string){
+        try {
+            const cities = await City.find({county: county}).populate('pincodes');
             return this.response({ code: 200, message: 'All Cities', data: cities })
         } catch (error: any) {
             return this.response({ code: 500, message: error.message, data: [] })

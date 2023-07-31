@@ -10,36 +10,42 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const services_1 = require("../services");
-class CityController {
+class BannerController {
     constructor() {
         this.create = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.CityService.create(req.body);
+            const files = req.files;
+            let body = req.body;
+            if (files && files['banner']) {
+                body.banner = files['banner'][0].path.replace(/\\/g, "/");
+            }
+            const response = yield services_1.BannerService.create(body);
             return res.status(response.code).json(response);
         });
         this.getOne = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.CityService.getOne(req.params.id);
+            const response = yield services_1.BannerService.getOne(req.params.id);
             return res.status(response.code).json(response);
         });
         this.getAll = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.CityService.getAll(req);
+            const response = yield services_1.BannerService.getAll(req);
             return res.status(response.code).json(response);
         });
         this.update = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.CityService.update(req.params.id, req.body);
+            const files = req.files;
+            let body = req.body;
+            if (files && files['banner']) {
+                body.banner = files['banner'][0].path.replace(/\\/g, "/");
+            }
+            const response = yield services_1.BannerService.update(req.params.id, body);
             return res.status(response.code).json(response);
         });
         this.delete = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.CityService.delete(req.params.id);
+            const response = yield services_1.BannerService.delete(req.params.id);
             return res.status(response.code).json(response);
         });
         this.getAllData = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.CityService.getAllData();
-            return res.status(response.code).json(response);
-        });
-        this.getCountyCity = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = yield services_1.CityService.getCountyCity(typeof req.query.county === 'string' ? req.query.county : '');
+            const response = yield services_1.BannerService.getAllData();
             return res.status(response.code).json(response);
         });
     }
 }
-exports.default = new CityController();
+exports.default = new BannerController();

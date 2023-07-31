@@ -9,6 +9,8 @@ import CategoryController from "./CategoryController";
 import TaskStatusController from "./TaskStatusController";
 import TaskController from "./TaskController";
 import TaskProgressController from "./TaskProgressController";
+import BannerController from "./BannerController";
+import CountyController from "./CountyController";
 export {
     AuthController,
     UserController,
@@ -20,6 +22,7 @@ export {
     CategoryController,
     TaskStatusController,
     TaskController,
-    TaskProgressController
-
+    TaskProgressController,
+    BannerController,
+    CountyController
 }

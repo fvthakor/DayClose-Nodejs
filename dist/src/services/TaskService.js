@@ -40,13 +40,6 @@ class TaskService extends Service_1.default {
                     ];
                 }
                 if (typeof taskDate === 'string' && taskDate.trim() !== '') {
-                    // if(where['$or']){
-                    //     where['$or'].push( { "taskDate": taskDate  });
-                    // }else{
-                    //     where[taskDate] = [
-                    //         { "taskDate": taskDate  },
-                    //     ];
-                    // }
                     where['taskDate'] = taskDate;
                 }
                 //console.log(where);
@@ -97,6 +90,29 @@ class TaskService extends Service_1.default {
                 return task
                     ? this.response({ code: 200, message: 'Task status', data: task })
                     : this.response({ code: 400, message: 'Task status not found', data: null });
+            }
+            catch (error) {
+                return this.response({ code: 500, message: error.message, data: null });
+            }
+        });
+    }
+    getTodayCount(req) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const newDate = this.formatDate(new Date());
+                let where = { taskDate: newDate };
+                if (req.role === 'manager') {
+                    where.store = req.storeId;
+                }
+                if (req.role === 'employee') {
+                    where.employee = req.userId;
+                }
+                console.log('where', where);
+                const pendingTask = yield models_1.Task.count(Object.assign(Object.assign({}, where), { status: 'pending' }));
+                const completeTask = yield models_1.Task.count(Object.assign(Object.assign({}, where), { status: 'complete' }));
+                const notNowTask = yield models_1.Task.count(Object.assign(Object.assign({}, where), { status: 'not_now' }));
+                const assinedToOtherTask = yield models_1.Task.count(Object.assign(Object.assign({}, where), { status: 'assined_to_other' }));
+                return this.response({ code: 200, message: 'get Task count!', data: { pendingTask, completeTask, notNowTask, assinedToOtherTask } });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: null });

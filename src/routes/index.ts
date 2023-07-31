@@ -10,6 +10,8 @@ import categoryRoute from "./category.route";
 import taskStatusRoute from "./taskStatus.route";
 import taskRoute from "./task.route";
 import taskProgress from "./taskProgress.route";
+import bannerRoute from "./banner.route";
+import countyRoute from "./county.route";
 const restRouter = express.Router();
 
 restRouter.use('/auth', authRoute)
@@ -23,5 +25,7 @@ restRouter.use('/category', categoryRoute);
 restRouter.use('/task-status', taskStatusRoute);
 restRouter.use('/task', taskRoute);
 restRouter.use('/task-progress', taskProgress);
+restRouter.use('/banner', bannerRoute);
+restRouter.use('/county', countyRoute);
 
 export { restRouter };
