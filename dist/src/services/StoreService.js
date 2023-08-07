@@ -72,6 +72,7 @@ class StoreService extends Service_1.default {
                 const stores = yield models_1.Store.find(where)
                     .populate('city')
                     .populate('pincode')
+                    .populate('county')
                     .skip(skip).limit(limit2);
                 const total = yield models_1.Store.countDocuments(where);
                 return this.response({ code: 200, message: 'All Store', data: stores, total });

@@ -4,7 +4,7 @@ export interface TaskModel {
     user?: string,
     store?: string,
     category: ObjectId,
-    subCategory: ObjectId,
+    subCategory?: ObjectId,
     detail: string,
     employee: ObjectId,
     taskDate: Date,

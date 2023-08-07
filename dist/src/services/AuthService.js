@@ -79,6 +79,7 @@ class AuthService extends Service_1.default {
                         address: user.address,
                         city: user.city,
                         pincode: user.pincode,
+                        county: user.county,
                     };
                     const token = jwt.sign(userData, process.env.ACCESS_TOKEN_SECRET ? process.env.ACCESS_TOKEN_SECRET : 'drc');
                     res.cookie('authToken', token);
@@ -108,6 +109,7 @@ class AuthService extends Service_1.default {
                     address: user.address,
                     city: user.city,
                     pincode: user.pincode,
+                    county: user.county,
                     pic: user.employeePhoto ? user.employeePhoto : './assets/media/avatars/300-1.jpg'
                 };
                 return userData;

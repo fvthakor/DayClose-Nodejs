@@ -5,6 +5,9 @@ const storeSchema = new Schema<StoreModel>({
     name: { type: String, required: true },
     number: { type: String, required: true },
     address: { type: String, required: true },
+    county: {
+        type: Schema.Types.ObjectId, ref: 'County'
+    },
     city: {
         type: Schema.Types.ObjectId, ref: 'City'
     },

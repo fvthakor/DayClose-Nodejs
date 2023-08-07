@@ -7,6 +7,10 @@ import { Request } from "express";
 class TaskService extends Service {
     async create(data: TaskModel) {
         try {
+            if(data.subCategory.trim() === ''){
+                delete data.subCategory;
+            }
+            console.log('data', data);
             const category = await Task.create(data);
             return this.response({ code: 201, message: 'Task added successfully!', data: category })
         } catch (error: any) {

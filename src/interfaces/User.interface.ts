@@ -10,6 +10,7 @@ export interface UserModel {
     name: string,
     email: string,
     address: string,
+    county: ObjectId,
     city: ObjectId,
     pincode: ObjectId,
     documentType: ObjectId,

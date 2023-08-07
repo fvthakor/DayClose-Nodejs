@@ -17,6 +17,7 @@ const taskSchema = new mongoose_1.Schema({
     subCategory: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Category',
+        required: false
     },
     detail: {
         type: String,

@@ -5,6 +5,9 @@ const storeSchema = new mongoose_1.Schema({
     name: { type: String, required: true },
     number: { type: String, required: true },
     address: { type: String, required: true },
+    county: {
+        type: mongoose_1.Schema.Types.ObjectId, ref: 'County'
+    },
     city: {
         type: mongoose_1.Schema.Types.ObjectId, ref: 'City'
     },

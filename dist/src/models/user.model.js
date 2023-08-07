@@ -11,6 +11,9 @@ const userSchema = new mongoose_1.Schema({
     name: { type: String },
     email: { type: String, required: true },
     address: { type: String },
+    county: {
+        type: mongoose_1.Schema.Types.ObjectId, ref: 'County'
+    },
     city: {
         type: mongoose_1.Schema.Types.ObjectId, ref: 'City'
     },

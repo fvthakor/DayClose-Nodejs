@@ -18,6 +18,10 @@ class TaskService extends Service_1.default {
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                if (data.subCategory.trim() === '') {
+                    delete data.subCategory;
+                }
+                console.log('data', data);
                 const category = yield models_1.Task.create(data);
                 return this.response({ code: 201, message: 'Task added successfully!', data: category });
             }

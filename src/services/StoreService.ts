@@ -55,6 +55,7 @@ class StoreService extends Service {
             const stores = await Store.find(where)
             .populate('city')
                 .populate('pincode')
+                .populate('county')
                 .skip(skip).limit(limit2);
             const total = await Store.countDocuments(where);
             return this.response({ code: 200, message: 'All Store', data: stores, total })

@@ -17,6 +17,7 @@ const taskSchema = new Schema<TaskModel>({
     subCategory: {
         type: Schema.Types.ObjectId,
         ref: 'Category',
+        required: false
     }, 
     detail: {
         type: String,

@@ -11,6 +11,9 @@ const userSchema = new Schema<UserModel>({
     name: { type: String },
     email: { type: String, required: true },
     address: { type: String },
+    county: {
+        type: Schema.Types.ObjectId, ref: 'County'
+    },
     city: {
         type: Schema.Types.ObjectId, ref: 'City'
     },
