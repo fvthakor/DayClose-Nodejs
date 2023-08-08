@@ -7,7 +7,7 @@ const bannerRoute = express.Router();
 const cpUpload = uploadFile.fields(
     [{name:'banner', maxCount: 1}]
 );
-bannerRoute.post('/', [checkAuth(['admin']), cpUpload], BannerController.create);
+bannerRoute.post('/', [checkAuth(['admin','manager']), cpUpload], BannerController.create);
 bannerRoute.get('/', [checkAuth(['manager', 'manager','admin'])], BannerController.getAll);
 bannerRoute.get('/all', BannerController.getAllData);
 bannerRoute.get('/:id', [checkAuth(['manager', 'manager','admin'])], BannerController.getOne);

@@ -116,7 +116,8 @@ class TaskService extends Service_1.default {
                 const completeTask = yield models_1.Task.count(Object.assign(Object.assign({}, where), { status: 'complete' }));
                 const notNowTask = yield models_1.Task.count(Object.assign(Object.assign({}, where), { status: 'not_now' }));
                 const assinedToOtherTask = yield models_1.Task.count(Object.assign(Object.assign({}, where), { status: 'assined_to_other' }));
-                return this.response({ code: 200, message: 'get Task count!', data: { pendingTask, completeTask, notNowTask, assinedToOtherTask } });
+                const banners = yield models_1.Banner.find();
+                return this.response({ code: 200, message: 'get Task count!', data: { pendingTask, completeTask, notNowTask, assinedToOtherTask, banners } });
             }
             catch (error) {
                 return this.response({ code: 500, message: error.message, data: null });

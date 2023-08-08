@@ -1,13 +1,13 @@
 import express from "express";
 import { AuthController } from "../controllers";
 
-import uploadFile from "../middleware/UploadMiddleware";
+import uploadAll from "../middleware/UploadAllMiddleware";
 import { checkAuth } from "../middleware/AuthMiddleware";
 
 const authRoute = express.Router();
 
-const cpUpload = uploadFile.fields(
-    [{name:'documentFront', maxCount: 1}, {name:'documentBack', maxCount: 1}, {name:'employeePhoto', maxCount: 1}]
+const cpUpload = uploadAll.fields(
+    [{name:'documentFront', maxCount: 1}, {name:'documentBack', maxCount: 1}, {name:'employeePhoto', maxCount: 1}, {name:'document1', maxCount: 1}, {name:'document2', maxCount: 1} ]
 );
 
 authRoute.post('/register', [checkAuth(['admin', 'manager']),cpUpload] , AuthController.register);

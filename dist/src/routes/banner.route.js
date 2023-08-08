@@ -9,7 +9,7 @@ const middleware_1 = require("../middleware");
 const UploadMiddleware_1 = __importDefault(require("../middleware/UploadMiddleware"));
 const bannerRoute = express_1.default.Router();
 const cpUpload = UploadMiddleware_1.default.fields([{ name: 'banner', maxCount: 1 }]);
-bannerRoute.post('/', [(0, middleware_1.checkAuth)(['admin']), cpUpload], controllers_1.BannerController.create);
+bannerRoute.post('/', [(0, middleware_1.checkAuth)(['admin', 'manager']), cpUpload], controllers_1.BannerController.create);
 bannerRoute.get('/', [(0, middleware_1.checkAuth)(['manager', 'manager', 'admin'])], controllers_1.BannerController.getAll);
 bannerRoute.get('/all', controllers_1.BannerController.getAllData);
 bannerRoute.get('/:id', [(0, middleware_1.checkAuth)(['manager', 'manager', 'admin'])], controllers_1.BannerController.getOne);
