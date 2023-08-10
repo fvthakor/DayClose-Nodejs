@@ -53,6 +53,26 @@ const userSchema = new mongoose_1.Schema({
                 : value;
         }
     },
+    document1: {
+        type: String,
+        get: (value) => {
+            return process.env.SERVER_URL
+                ? value
+                    ? `${process.env.SERVER_URL}/${value}`
+                    : null
+                : value;
+        }
+    },
+    document2: {
+        type: String,
+        get: (value) => {
+            return process.env.SERVER_URL
+                ? value
+                    ? `${process.env.SERVER_URL}/${value}`
+                    : null
+                : value;
+        }
+    },
     password: { type: String, required: true },
     role: { type: String, enum: ['admin', 'manager', 'employee'], required: true }
 }, { toJSON: { getters: true } });

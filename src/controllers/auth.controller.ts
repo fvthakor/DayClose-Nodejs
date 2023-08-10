@@ -30,6 +30,13 @@ class AuthController {
         if (files && files['employeePhoto']) {
             body.employeePhoto = files['employeePhoto'][0].path.replace(/\\/g, "/");
         }
+        if (files && files['document1']) {
+            body.document1 = files['document1'][0].path.replace(/\\/g, "/");
+        }
+        if (files && files['document2']) {
+            body.document2 = files['document2'][0].path.replace(/\\/g, "/");
+        }
+        
         body.role = req.role === 'admin' ? 'manager' : 'employee';
         const response = await AuthService.register(body);
         return res.status(response.code).json(response);

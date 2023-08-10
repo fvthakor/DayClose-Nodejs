@@ -53,6 +53,28 @@ const userSchema = new Schema<UserModel>({
                 : value;
         }
     },
+    document1: {
+        type: String,
+        get: (value: any) => {
+            return process.env.SERVER_URL
+                ? value
+                    ? `${process.env.SERVER_URL}/${value}`
+                    : null
+                : value;
+        }
+    },
+    document2: {
+        type: String,
+        get: (value: any) => {
+            return process.env.SERVER_URL
+                ? value
+                    ? `${process.env.SERVER_URL}/${value}`
+                    : null
+                : value;
+        }
+    },
+
+
     password: { type: String, required: true },
     role: { type: String, enum: ['admin', 'manager', 'employee'], required: true }
 }, { toJSON: { getters: true } });
