@@ -7,7 +7,7 @@ import { Request } from "express";
 class TaskService extends Service {
     async create(data: TaskModel) {
         try {
-            if(data.subCategory.trim() === ''){
+            if(data.subCategory && data.subCategory.toString().trim() === ''){
                 delete data.subCategory;
             }
             console.log('data', data);

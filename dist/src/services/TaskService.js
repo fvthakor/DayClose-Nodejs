@@ -18,7 +18,7 @@ class TaskService extends Service_1.default {
     create(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                if (data.subCategory.trim() === '') {
+                if (data.subCategory && data.subCategory.toString().trim() === '') {
                     delete data.subCategory;
                 }
                 console.log('data', data);
