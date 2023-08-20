@@ -24,4 +24,6 @@ export interface UserModel {
     employeePhoto: string,
     password: string,
     role: 'admin' | 'employee' | 'manager',
+    document1: string,
+    document2: string,
 };
