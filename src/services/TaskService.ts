@@ -1,6 +1,6 @@
 import { TaskModel } from "../interfaces";
 import RequestCustom from "../interfaces/RequestCustom.interface";
-import { Task , Banner} from "../models";
+import { Task , Banner, User} from "../models";
 import Service from "./Service";
 import { Request } from "express";
 
@@ -96,7 +96,8 @@ class TaskService extends Service {
             const notNowTask = await Task.count({...where, status: 'not_now'});
             const assinedToOtherTask = await Task.count({...where, status: 'assined_to_other'});
              const banners = await Banner.find();
-            return this.response({ code: 200, message: 'get Task count!', data: {pendingTask, completeTask, notNowTask, assinedToOtherTask, banners} })
+             const user = await User.findById(req.userId);
+            return this.response({ code: 200, message: 'get Task count!', data: {pendingTask, completeTask, notNowTask, assinedToOtherTask, banners, user} })
         } catch (error: any) {
             return this.response({ code: 500, message: error.message, data: null })
         }

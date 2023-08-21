@@ -81,7 +81,9 @@ class AuthService extends Service_1.default {
                         pincode: user.pincode,
                         county: user.county,
                     };
-                    const token = jwt.sign(userData, process.env.ACCESS_TOKEN_SECRET ? process.env.ACCESS_TOKEN_SECRET : 'drc');
+                    const token = jwt.sign(userData, process.env.ACCESS_TOKEN_SECRET ? process.env.ACCESS_TOKEN_SECRET : 'drc', {
+                        expiresIn: '45d'
+                    });
                     res.cookie('authToken', token);
                     return this.response({
                         code: 200,
