@@ -1,5 +1,5 @@
 import { CountyModel } from "../interfaces";
-import { County } from "../models";
+import { City, County, Pincode } from "../models";
 import Service from "./Service";
 import { Request } from "express";
 
@@ -58,6 +58,11 @@ class CountyService extends Service {
     async delete(id: string) {
         try {
             const city = await County.findByIdAndDelete(id);
+            const cities = await City.find({county: id});
+            for(let city of cities){
+                await Pincode.deleteMany({city: city._id});
+                city.deleteOne();
+            }
             return city
                 ? this.response({ code: 200, message: 'County deleted successfully!', data: city })
                 : this.response({ code: 400, message: 'County not found!', data: null })

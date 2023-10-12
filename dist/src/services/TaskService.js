@@ -21,7 +21,7 @@ class TaskService extends Service_1.default {
                 if (data.subCategory && data.subCategory.toString().trim() === '') {
                     delete data.subCategory;
                 }
-                console.log('data', data);
+                data.autoCreate = 'true';
                 const category = yield models_1.Task.create(data);
                 return this.response({ code: 201, message: 'Task added successfully!', data: category });
             }

@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
 const cors_1 = __importDefault(require("cors"));
+require('./src/services/cronService');
 const envUrl = process.env.NODE_ENV
     ? path_1.default.resolve(__dirname, `../${process.env.NODE_ENV}.env`)
     : path_1.default.resolve(__dirname, `../.env`);

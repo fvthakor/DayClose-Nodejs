@@ -2,6 +2,8 @@ import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors'
+
+require('./src/services/cronService');
 const envUrl = process.env.NODE_ENV
   ? path.resolve(__dirname, `../${process.env.NODE_ENV}.env`)
   : path.resolve(__dirname, `../.env`);

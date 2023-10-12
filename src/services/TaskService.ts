@@ -10,7 +10,7 @@ class TaskService extends Service {
             if(data.subCategory && data.subCategory.toString().trim() === ''){
                 delete data.subCategory;
             }
-            console.log('data', data);
+            data.autoCreate = 'true';
             const category = await Task.create(data);
             return this.response({ code: 201, message: 'Task added successfully!', data: category })
         } catch (error: any) {

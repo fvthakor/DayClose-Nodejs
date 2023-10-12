@@ -121,5 +121,21 @@ class AuthService extends Service_1.default {
             }
         });
     }
+    userUpdate(id, data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const user = yield models_1.User.findByIdAndUpdate(id, data, { new: true });
+                if (user) {
+                    return this.response({ code: 200, message: 'User updated successfully!', data: user });
+                }
+                else {
+                    return this.response({ code: 400, message: 'User not found!', data: null });
+                }
+            }
+            catch (error) {
+                return this.response({ code: 500, message: 'Request failed due to an internal error.', data: null });
+            }
+        });
+    }
 }
 exports.default = new AuthService();

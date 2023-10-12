@@ -78,6 +78,11 @@ class CountyService extends Service_1.default {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const city = yield models_1.County.findByIdAndDelete(id);
+                const cities = yield models_1.City.find({ county: id });
+                for (let city of cities) {
+                    yield models_1.Pincode.deleteMany({ city: city._id });
+                    city.deleteOne();
+                }
                 return city
                     ? this.response({ code: 200, message: 'County deleted successfully!', data: city })
                     : this.response({ code: 400, message: 'County not found!', data: null });

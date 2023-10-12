@@ -11,6 +11,7 @@ const cpUpload = uploadAll.fields(
 );
 
 authRoute.post('/register', [checkAuth(['admin', 'manager']),cpUpload] , AuthController.register);
+authRoute.post('/update/:id', [checkAuth(['admin', 'manager']),cpUpload] , AuthController.userUpdate);
 authRoute.post('/login', AuthController.login);
 authRoute.get('/me', [checkAuth(['admin', 'manager', 'employee'])], AuthController.me);
 

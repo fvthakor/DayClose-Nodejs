@@ -1,5 +1,5 @@
 import { CityModel } from "../interfaces";
-import { City } from "../models";
+import { City, Pincode } from "../models";
 import Service from "./Service";
 import { Request } from "express";
 
@@ -58,6 +58,7 @@ class CityService extends Service {
     async delete(id: string) {
         try {
             const city = await City.findByIdAndDelete(id);
+            await Pincode.deleteMany({city: id});
             return city
                 ? this.response({ code: 200, message: 'City deleted successfully!', data: city })
                 : this.response({ code: 400, message: 'City not found!', data: null })

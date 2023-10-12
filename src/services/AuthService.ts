@@ -36,6 +36,22 @@ class AuthService extends Service {
         }
     }
 
+
+    async userUpdate(id:string, data:UserModel){
+        try{
+            const user = await User.findByIdAndUpdate(id, data, {new:true});
+            if(user){
+                return this.response({code: 200, message: 'User updated successfully!', data: user}) 
+            }else{
+                return this.response({code: 400, message: 'User not found!', data: null}) 
+            }
+        }catch(error){
+            return this.response({code: 500, message: 'Request failed due to an internal error.', data: null})
+        }
+    }
+
+    
+
     login = async (data: LoginModel, res: Response) => {
         const user = await User.findOne({ email: data.email });
         if (user) {

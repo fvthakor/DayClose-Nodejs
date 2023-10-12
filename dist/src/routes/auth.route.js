@@ -10,6 +10,7 @@ const AuthMiddleware_1 = require("../middleware/AuthMiddleware");
 const authRoute = express_1.default.Router();
 const cpUpload = UploadAllMiddleware_1.default.fields([{ name: 'documentFront', maxCount: 1 }, { name: 'documentBack', maxCount: 1 }, { name: 'employeePhoto', maxCount: 1 }, { name: 'document1', maxCount: 1 }, { name: 'document2', maxCount: 1 }]);
 authRoute.post('/register', [(0, AuthMiddleware_1.checkAuth)(['admin', 'manager']), cpUpload], controllers_1.AuthController.register);
+authRoute.post('/update/:id', [(0, AuthMiddleware_1.checkAuth)(['admin', 'manager']), cpUpload], controllers_1.AuthController.userUpdate);
 authRoute.post('/login', controllers_1.AuthController.login);
 authRoute.get('/me', [(0, AuthMiddleware_1.checkAuth)(['admin', 'manager', 'employee'])], controllers_1.AuthController.me);
 exports.default = authRoute;

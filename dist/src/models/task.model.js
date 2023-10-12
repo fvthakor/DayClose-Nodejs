@@ -53,7 +53,10 @@ const taskSchema = new mongoose_1.Schema({
         }
     },
     status: { type: String, enum: ['pending', 'complete', 'not_now', 'assined_to_other'], default: 'pending' },
-    priority: { type: String, enum: ['low', 'moderate', 'high'], default: 'low' }
+    priority: { type: String, enum: ['low', 'moderate', 'high'], default: 'low' },
+    autoCreate: {
+        type: String, enum: ['true', 'false'], default: 'false'
+    },
 }, { toJSON: { getters: true } });
 const Task = (0, mongoose_1.model)('Task', taskSchema);
 exports.default = Task;

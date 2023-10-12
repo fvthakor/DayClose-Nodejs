@@ -78,6 +78,7 @@ class CityService extends Service_1.default {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const city = yield models_1.City.findByIdAndDelete(id);
+                yield models_1.Pincode.deleteMany({ city: id });
                 return city
                     ? this.response({ code: 200, message: 'City deleted successfully!', data: city })
                     : this.response({ code: 400, message: 'City not found!', data: null });
